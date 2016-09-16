@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== WP Discord ===
 Contributors: (this should be a list of wordpress.org userid's)
 Tags: discord, chat
 Requires at least: 4.0.0
