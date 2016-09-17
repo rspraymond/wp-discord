@@ -17,6 +17,9 @@
  * @subpackage WP_Discord/admin
  * @author     Raymond Perez <ray@rayperez.com>
  */
+
+include_once(plugin_dir_path(__FILE__) . 'class-settings-tab.php');
+
 class WP_Discord_Admin
 {
 
@@ -37,6 +40,8 @@ class WP_Discord_Admin
      * @var      string $version The current version of this plugin.
      */
     private $version;
+
+    public $tabs = ['discord', 'settings'];
 
     /**
      * Initialize the class and set its properties.
@@ -69,12 +74,17 @@ class WP_Discord_Admin
      */
     public function admin_options()
     {
-        $file_path = plugin_dir_url(__FILE__) . '/partials/wp-discord-admin-display.php';
-        $page_builder = New AdminPageBuilder($file_path);
-        $page_builder->title = 'WP Discord Options';
-        $page_builder->form_action = '';
+        if (isset($_GET['tab'])) {
+            $active_tab = $_GET['tab'];
+        } else {
+            $active_tab = 'discord';
+        }
 
-        $page_builder->render();
+        $title = 'WP Discord Options';
+
+        $tabs = $this->get_tabs();
+
+        include 'partials/wp-discord-admin-display.php';
     }
 
     /**
@@ -95,6 +105,19 @@ class WP_Discord_Admin
     public function enqueue_scripts()
     {
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wp-discord-admin.js', array('jquery'), $this->version, false);
+    }
+
+    public function get_tabs()
+    {
+
+        $tabs = [];
+
+        foreach($this->tabs as $tab_name) {
+            $settings_tab = new SettingsTab($tab_name);
+            $tabs[$tab_name] = $settings_tab;
+        }
+
+        return $tabs;
     }
 
 }

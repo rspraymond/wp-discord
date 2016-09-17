@@ -7,6 +7,7 @@ class AdminPageBuilder
      * @var $file_path
      */
     protected $file_path;
+    public $forbidden = ['file_path', 'forbidden'];
 
     public function __construct($file_path)
     {
@@ -22,26 +23,10 @@ class AdminPageBuilder
      */
     public function render()
     {
-        echo self::build_html($this->get_html(), $this->get_params());
-    }
-
-    public static function build_html($html, $params)
-    {
-        foreach ($params as $key => $param) {
-            $search_string = '{{ $' . trim($key) . ' }}';
-            $html = str_replace($search_string, $param, $html);
+        try {
+            include($this->file_path);
+        } catch (Exception $ex) {
+            echo 'ERROR: ' . $ex->getMessage();
         }
-
-        return $html;
-    }
-
-    public function get_html()
-    {
-        return file_get_contents($this->file_path);
-    }
-
-    public function get_params()
-    {
-        return get_object_vars($this);
     }
 }

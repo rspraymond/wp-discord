@@ -104,7 +104,7 @@ class WP_Discord
          * An unofficial PHP API wrapper for the Discord client (http://discordapp.com).
          * https://github.com/Cleanse/discord-hypertext
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/discord-hypertext/Discord.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-discord-api-wrapper.php';
 
         /**
          * The class responsible for building out admin pages.
