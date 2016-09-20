@@ -1,0 +1,151 @@
+//colors
+$primary_color: #7289da;
+$secondary_color: #6378bf;
+$medium_shadow: rgba(0, 0, 0, 0.4);
+$white: #fff;
+$light_gray: #f9f9f9;
+$light-shadow: rgba(0, 0, 0, 0.3);
+
+//fonts
+$body_font: 'Arial', 'Helvetica', 'Verdana', sans-serif;
+$info_font: 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', monospace;
+
+//Tabs
+.r-tabs {
+  position: relative;
+  background-color: $primary_color;
+  border-top: 1px solid $primary_color;
+  border-right: 1px solid $primary_color;
+  border-left: 1px solid $primary_color;
+  border-bottom: 4px solid $primary_color;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 4px;
+  .r-tabs-nav {
+    margin: 0;
+    padding: 0;
+    .r-tabs-tab {
+      position: relative;
+      background-color: $primary_color;
+    }
+    .r-tabs-anchor {
+      display: inline-block;
+      padding: 10px 12px;
+      text-decoration: none;
+      //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      text-shadow: 0 1px $medium_shadow;
+      font-size: 14px;
+      font-weight: bold;
+      color: $white;
+    }
+    .r-tabs-state-disabled {
+      opacity: 0.5;
+    }
+    .r-tabs-state-active .r-tabs-anchor {
+      color: $primary_color;
+      //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      text-shadow: none;
+      background-color: $white;
+      //Instead of the line below you could use @include border-top-right-radius($radius)
+      border-top-right-radius: 4px;
+      //Instead of the line below you could use @include border-top-left-radius($radius)
+      border-top-left-radius: 4px;
+    }
+  }
+  .r-tabs-tab {
+    display: inline-block;
+    margin: 0;
+    list-style: none;
+  }
+  .r-tabs-panel {
+    padding: 15px;
+    display: none;
+    background-color: $white;
+    border-bottom: 4px solid $white;
+    //Instead of the line below you could use @include border-bottom-right-radius($radius)
+    border-bottom-right-radius: 4px;
+    //Instead of the line below you could use @include border-bottom-left-radius($radius)
+    border-bottom-left-radius: 4px;
+    &.r-tabs-state-active {
+      display: block;
+    }
+  }
+  .r-tabs-accordion-title {
+    display: none;
+    .r-tabs-anchor {
+      display: block;
+      padding: 10px;
+      background-color: $primary_color;
+      color: $white;
+      font-weight: bold;
+      text-decoration: none;
+      //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      text-shadow: 0 1px $medium_shadow;
+      font-size: 14px;
+      //Instead of the line below you could use @include border-top-right-radius($radius)
+      border-top-right-radius: 4px;
+      //Instead of the line below you could use @include border-top-left-radius($radius)
+      border-top-left-radius: 4px;
+    }
+    &.r-tabs-state-disabled {
+      opacity: 0.5;
+    }
+    &.r-tabs-state-active .r-tabs-anchor {
+      background-color: $white;
+      color: $primary_color;
+      //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      text-shadow: none;
+    }
+  }
+}
+@media only screen and(max-width: 768px) {
+  .r-tabs {
+    .r-tabs-nav {
+      display: none;
+    }
+    .r-tabs-accordion-title {
+      display: block;
+    }
+  }
+}
+body {
+  font-family: $body_font;
+  font-size: 12px;
+  background-color: $light_gray;
+}
+button {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  line-height: 100%;
+  color: $white;
+  font-size: 14px;
+  text-align: center;
+  //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  text-shadow: 0 1px $light-shadow;
+  vertical-align: middle;
+  font-weight: bold;
+  border: 0;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 3px;
+  background-color: $primary_color;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 3px 0 0 $secondary_color;
+  cursor: pointer;
+}
+.info {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  width: 300px;
+  line-height: 100%;
+  font-family: $info_font;
+  font-size: 14px;
+  color: $primary_color;
+  border: 2px solid $secondary_color;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 3px;
+  background-color: $white;
+  cursor: pointer;
+}

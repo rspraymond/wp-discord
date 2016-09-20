@@ -1,0 +1,22 @@
+{
+  "name": "wp-discord",
+  "version": "1.0.0",
+  "description": "Custom package for wp-discord development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/rspraymond/wp-discord.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/rspraymond/wp-discord#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-sass": "^2.3.2",
+    "gulp-wrapper": "^1.0.0"
+  }
+}
