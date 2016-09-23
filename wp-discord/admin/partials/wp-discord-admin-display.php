@@ -1,5 +1,9 @@
 <?php
 
+// If this file is called directly, abort.
+if (!defined('WPINC')) {
+    die;
+}
 /**
  * Provide a admin area view for the plugin
  *

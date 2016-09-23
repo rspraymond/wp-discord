@@ -1,5 +1,10 @@
 <?php
 
+// If this file is called directly, abort.
+if (!defined('WPINC')) {
+    die;
+}
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -19,6 +24,7 @@
  */
 
 include_once(plugin_dir_path(__FILE__) . 'class-settings-tab.php');
+include_once(plugin_dir_path(__FILE__) . '../includes/class-wp-discord-follow-widget.php');
 
 class WP_Discord_Admin
 {
@@ -118,6 +124,11 @@ class WP_Discord_Admin
         }
 
         return $tabs;
+    }
+
+    public function register_widgets()
+    {
+        register_widget( 'WP_Discord_Follow_Widget' );
     }
 
 }

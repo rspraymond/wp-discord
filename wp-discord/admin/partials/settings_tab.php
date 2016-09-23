@@ -1,3 +1,11 @@
+<?php
+
+// If this file is called directly, abort.
+if (!defined('WPINC')) {
+    die;
+}
+?>
+
 <h2>Discord Message Templates</h2>
 <div class="wpd-tabs">
     <ul>

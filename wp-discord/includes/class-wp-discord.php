@@ -1,5 +1,10 @@
 <?php
 
+// If this file is called directly, abort.
+if (!defined('WPINC')) {
+    die;
+}
+
 /**
  * The file that defines the core plugin class
  *
@@ -107,12 +112,6 @@ class WP_Discord
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-discord-api-wrapper.php';
 
         /**
-         * The class responsible for building out admin pages.
-         * core plugin.
-         */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-admin-page-builder.php';
-
-        /**
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
          */
@@ -171,7 +170,8 @@ class WP_Discord
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
-        $this->loader->add_action('admin_menu', $plugin_admin, 'admin_menu');
+        //COMING SOON $this->loader->add_action('admin_menu', $plugin_admin, 'admin_menu');
+        $this->loader->add_action('widgets_init', $plugin_admin, 'register_widgets');
 
     }
 
