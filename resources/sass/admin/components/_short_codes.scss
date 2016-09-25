@@ -1,0 +1,80 @@
+//colors
+$gray: #ccc;
+$black_haze: #f7f7f7;
+$white: #fff;
+$black: rgba(0,0,0,.08);
+$dark_gray: #999;
+
+.label-desc {
+  width: 27%;
+  margin-right: 3%;
+  float: left;
+  font-weight: bold;
+  text-align: right;
+  padding-top: 2px;
+}
+.field-container {
+  margin: 5px 0;
+  display: inline-block;
+  width: 100%;
+  input[type="text"] {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+  }
+  p {
+    margin: 0;
+  }
+}
+#TB_window {
+  width: 100% !important;
+  top: 0 !important;
+  margin: 0 0 !important;
+  left: 0 !important;
+}
+#TB_ajaxContent {
+  width: 100% !important;
+  h3 {
+    margin-bottom: 20px;
+  }
+}
+.columns-3 {
+  overflow: hidden;
+  float: left;
+  width: 30%;
+  margin-right: 1%;
+}
+.wp_doin_show_dropdown {
+  ul {
+    display: none;
+    position: absolute;
+    z-index: 99;
+    border: 1px solid;
+    padding: 10px;
+    border-color: $gray;
+    background: $black_haze;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: inset 0 1px 0 $white,0 1px 0 $black;
+    li {
+      margin-bottom: 0;
+      border-bottom: 1px solid $gray;
+    }
+    a {
+      float: left;
+    }
+    &:hover {
+      border-color: $dark_gray;
+    }
+  }
+  &:hover ul {
+    display: block;
+  }
+}
+.wp-core-ui a.editr_media_link {
+  padding-left: 0.4em;
+}
+.wp_doin_shortcode .content {
+  float: left;
+  width: 65%;
+}
