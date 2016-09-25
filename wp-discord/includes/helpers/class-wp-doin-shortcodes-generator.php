@@ -1,8 +1,8 @@
 <?php
 
-include_once(plugin_dir_path(__FILE__) .  'shortcodes.php');
+include_once(plugin_dir_path(__FILE__) .  'class-wp-doin-shortcode.php');
 
-Class WP_Doin_Shortcodes_Generator {
+class WP_Doin_Shortcodes_Generator {
 
 	/**
 	 * Store the shortcodes created
@@ -38,7 +38,7 @@ Class WP_Doin_Shortcodes_Generator {
 			add_thickbox();
 			?>
 			<ul>
-				<li class="wp_doin_show_dropdown"><a href="#" class="button wp_doin_media_link">WP Doin Shortcodes</a>
+				<li class="wp_doin_show_dropdown"><a href="#" class="button wp_doin_media_link">WP-Discord</a>
 					<ul >
 						<?php foreach ( $this->shortcodes as $name => $field ):
 							?>

@@ -25,6 +25,7 @@ if (!defined('WPINC')) {
 
 include_once(plugin_dir_path(__FILE__) . 'class-settings-tab.php');
 include_once(plugin_dir_path(__FILE__) . '../includes/class-wp-discord-follow-widget.php');
+include_once(plugin_dir_path(__FILE__) . '../includes/class-wp-discord-shortcodes.php');
 
 class WP_Discord_Admin
 {
@@ -118,7 +119,7 @@ class WP_Discord_Admin
 
         $tabs = [];
 
-        foreach($this->tabs as $tab_name) {
+        foreach ($this->tabs as $tab_name) {
             $settings_tab = new SettingsTab($tab_name);
             $tabs[$tab_name] = $settings_tab;
         }
@@ -126,9 +127,15 @@ class WP_Discord_Admin
         return $tabs;
     }
 
+    public function register_shortcodes()
+    {
+        $shortcodes = New WP_Discord_Shortcodes();
+        $shortcodes->generate();
+    }
+
     public function register_widgets()
     {
-        register_widget( 'WP_Discord_Follow_Widget' );
+        register_widget('WP_Discord_Follow_Widget');
     }
 
 }

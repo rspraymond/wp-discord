@@ -63,7 +63,7 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         $this->create_widget($args);
     }
 
-    public function filter_bots($members)
+    public static function filter_bots($members)
     {
         $real_users = [];
 
@@ -77,6 +77,45 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         return $real_users;
     }
 
+    public static function render_widget($widget_object, $theme_class = 'wpd-white', $show_members = false)
+    {
+        $server_title = $widget_object->name;
+        $users_online = self::filter_bots($widget_object->members);
+        $invite_url = $widget_object->instant_invite;
+        $img_path = plugin_dir_url(__FILE__) . '../public/img';
+
+        $output = '<div id="wp-discord" class="' . $theme_class . '">' . PHP_EOL;
+        $output .= '<div class="wpd-head">' . PHP_EOL;
+        $output .= '<img src="' . $img_path . '/icon.png" class="wpd-icon">' . PHP_EOL;
+        $output .= '<img src="' . $img_path . '/discord.png" class="wpd-name">' . PHP_EOL;
+        $output .= '<h3>' . $server_title . '</h3>' . PHP_EOL;
+        $output .= '</div>' . PHP_EOL;
+        $output .= '<div class="wpd-info">' . PHP_EOL;
+        $output .= '<span><strong>' . count($users_online) . '</strong> User(s) Online</span>' . PHP_EOL;
+        $output .= '<a href="' . $invite_url . '" target="_blank">Join Server</a>' . PHP_EOL;
+
+        if ($show_members == true && count($users_online) > 0) {
+            $user_counter = 0;
+            $output .= '<ul class="wpd-users">';
+
+            foreach ($users_online as $user) {
+                $user_counter++;
+                $output .= '<li><img src="' . str_replace('https://', '//', $user->avatar_url) . '"><strong>' . $user->username . '</strong><span class="wpd-status ' . $user->status . '"></span></li>';
+
+                if ($user_counter >= 3) {
+                    break;
+                }
+            }
+
+            $output .= '</ul>';
+        }
+
+        $output .= '</div>' . PHP_EOL;
+        $output .= '</div>' . PHP_EOL;
+
+        return $output;
+    }
+
     // Output function
     public function widget($args, $instance)
     {
@@ -84,48 +123,15 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         $server_id = $instance['wp-discord-server-id'];
         $theme_class = $instance['wp-discord-theme'];
         $show_members = $instance['wp-discord-show-members'];
-        $widget_object = $this->widget_feed($server_id);
+        $widget_object = self::widget_feed($server_id);
 
         if (is_object($widget_object) && !empty($widget_object)) {
-            $server_title = $widget_object->name;
-            $users_online = $this->filter_bots($widget_object->members);
-            $invite_url = $widget_object->instant_invite;
-            $img_path = plugin_dir_url(__FILE__) . '../public/img';
-
-            $output = '<div id="wp-discord" class="' . $theme_class . '">' . PHP_EOL;
-            $output .= '<div class="wpd-head">' . PHP_EOL;
-            $output .= '<img src="' . $img_path . '/icon.png" class="wpd-icon">' . PHP_EOL;
-            $output .= '<img src="' . $img_path . '/discord.png" class="wpd-name">' . PHP_EOL;
-            $output .= '<h3>' . $server_title . '</h3>' . PHP_EOL;
-            $output .= '</div>' . PHP_EOL;
-            $output .= '<div class="wpd-info">' . PHP_EOL;
-            $output .= '<span><strong>' . count($users_online) . '</strong> User(s) Online</span>' . PHP_EOL;
-            $output .= '<a href="' . $invite_url . '" target="_blank">Join Server</a>' . PHP_EOL;
-
-            if ($show_members == true && count($users_online) > 0) {
-                $user_counter = 0;
-                $output .= '<ul class="wpd-users">';
-
-                foreach ($users_online as $user) {
-                    $user_counter++;
-                    $output .= '<li><img src="' . str_replace('https://', '//', $user->avatar_url) . '"><strong>' . $user->username . '</strong><span class="wpd-status ' . $user->status . '"></span></li>';
-
-                    if ($user_counter >= 3) {
-                        break;
-                    }
-                }
-
-                $output .= '</ul>';
-            }
-
-            $output .= '</div>' . PHP_EOL;
-            $output .= '</div>' . PHP_EOL;
-
+            $output = self::render_widget($widget_object, $theme_class, $show_members);
             echo $output;
         }
     }
 
-    public function widget_feed($server_id)
+    public static function widget_feed($server_id)
     {
         $url = 'https://discordapp.com/api/servers/' . trim($server_id) . '/widget.json';
 

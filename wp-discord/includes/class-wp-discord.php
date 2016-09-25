@@ -135,7 +135,6 @@ class WP_Discord
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-wp-discord-public.php';
 
         $this->loader = new WP_Discord_Loader();
-
     }
 
     /**
@@ -172,6 +171,7 @@ class WP_Discord
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
         //COMING SOON $this->loader->add_action('admin_menu', $plugin_admin, 'admin_menu');
         $this->loader->add_action('widgets_init', $plugin_admin, 'register_widgets');
+        $this->loader->add_action('init', $plugin_admin, 'register_shortcodes');
 
     }
 
