@@ -24,7 +24,8 @@
 #wp-discord .wpd-head h3 {
   margin: 0;
   padding: 0;
-  font-size: 16px; }
+  font-size: 16px;
+  color: inherit; }
 
 #wp-discord .wpd-head img.wpd-icon {
   width: 100%;

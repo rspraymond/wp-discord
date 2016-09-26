@@ -4,6 +4,7 @@ $light: #c8d1d7;
 $greyple: #99AAB5;
 $dark: #2C2F33;
 $darker: #23272A;
+$white: #fff;
 
 // Type
 $font: 'Open Sans', sans-serif;
@@ -15,7 +16,7 @@ $font: 'Open Sans', sans-serif;
   margin: 15px auto;
   padding: 15px;
   border-radius: 9px;
-  background: #fff;
+  background: $white;
   font-family: $font;
   color: $darker;
   .wpd-head {
@@ -27,6 +28,7 @@ $font: 'Open Sans', sans-serif;
       margin: 0;
       padding: 0;
       font-size: 16px;
+      color: inherit;
     }
     img.wpd-icon {
       width: 100%;
@@ -58,7 +60,7 @@ $font: 'Open Sans', sans-serif;
       border-radius: 3px;
       background: $blurple;
       font-size: 15px;
-      color: #fff;
+      color: $white;
       font-weight: 600;
       text-decoration: none;
       transition: all .5s ease;
@@ -123,6 +125,7 @@ $font: 'Open Sans', sans-serif;
 #wp-discord.wpd-dark {
   background: $darker;
   color: $greyple;
+
   .wpd-info {
     a:hover, a:focus {
       background: $light;
