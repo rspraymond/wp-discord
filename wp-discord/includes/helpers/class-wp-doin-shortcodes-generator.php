@@ -37,8 +37,8 @@ class WP_Doin_Shortcodes_Generator {
 		if ( !empty( $this->shortcodes ) ):
 			add_thickbox();
 			?>
-			<ul>
-				<li class="wp_doin_show_dropdown"><a href="#" class="button wp_doin_media_link">WP-Discord</a>
+			<ul class="button">
+				<li class="wp_doin_show_dropdown"><a href="#" class="wp_doin_media_link">WP-Discord</a>
 					<ul >
 						<?php foreach ( $this->shortcodes as $name => $field ):
 							?>

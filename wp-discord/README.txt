@@ -29,5 +29,8 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 
 == Changelog ==
 
+= 0.1.1 =
+* Fix layout of shortcode button.
+
 = 0.1.0 =
 * Widget Release
