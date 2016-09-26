@@ -77,6 +77,20 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         return $real_users;
     }
 
+    public static function member_shuffle($members)
+    {
+        $shuffled_members = [];
+
+        $keys = array_keys($members);
+        shuffle($keys);
+
+        foreach ($keys as $key) {
+            $shuffled_members[$key] = $members[$key];
+        }
+
+        return $shuffled_members;
+    }
+
     public static function render_widget($widget_object, $theme_class = 'wpd-white', $show_members = false)
     {
         $server_title = $widget_object->name;
@@ -95,6 +109,7 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         $output .= '<a href="' . $invite_url . '" target="_blank">Join Server</a>' . PHP_EOL;
 
         if ($show_members == true && count($users_online) > 0) {
+            $users_online = self::member_shuffle($users_online);
             $user_counter = 0;
             $output .= '<ul class="wpd-users">';
 
