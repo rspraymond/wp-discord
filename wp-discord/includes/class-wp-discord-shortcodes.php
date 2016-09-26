@@ -6,7 +6,7 @@ if (!defined('WPINC')) {
 }
 
 include_once(plugin_dir_path(__FILE__) . 'helpers/class-wp-doin-shortcodes-generator.php');
-include_once(plugin_dir_path(__FILE__) . 'class-wp-discord-follow-widget.php');
+include_once(plugin_dir_path(__FILE__) . 'class-wp-discord-widget.php');
 
 class WP_Discord_Shortcodes
 {
