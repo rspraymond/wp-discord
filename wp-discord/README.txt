@@ -28,6 +28,8 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 3. Widget Display
 
 == Changelog ==
+= 0.1.2 =
+* Fix stable tag
 
 = 0.1.1 =
 * Fix layout of shortcode button.
