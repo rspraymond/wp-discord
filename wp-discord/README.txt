@@ -3,7 +3,7 @@ Contributors:
 Tags: discord, chat, widget
 Requires at least: 4.0.0
 Tested up to: 4.6.1
-Stable tag: trunk
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,9 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 3. Widget Display
 
 == Changelog ==
+=0.1.3=
+* CSS Fixes to prevent wordpress conflicts.
+
 = 0.1.2 =
 * Fix stable tag
 
