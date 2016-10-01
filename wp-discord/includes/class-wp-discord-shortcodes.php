@@ -23,7 +23,7 @@ class WP_Discord_Shortcodes
         $follow_widget = $this->generator->add_shortcode($widget_shortcode_tag, 'Follow Widget', '');
         $follow_widget->add_field('text', 'server_id', __('Server ID', 'server_id'));
         $follow_widget->add_field('select', 'theme_class', __('Theme Class', 'theme_class'), '', ['wpd-white' => 'White', 'wpd-gray' => 'Gray', 'wpd-dark' => 'Dark']);
-        $follow_widget->add_field('checkbox', 'show_members', __('Show Online Members', 'show_members'), 'Displays online members inside widget.', ['show_members' => '']);
+        $follow_widget->add_field('select', 'member_count', __('How many online members would you like to display?', 'member_count'), '', ['0' => 'none', '3' => '3', '6' => '6', '9' => '9', '12' => '12', '-1' => 'All']);
 
         $this->generator->generate();
 
@@ -37,11 +37,18 @@ class WP_Discord_Shortcodes
             'server_id' => null,
             'theme_class' => 'wpd-white',
             'show_members' => false,
+            'member_count' => 0,
         ], $args);
 
         $feed = WP_Discord_Follow_Widget::widget_feed($params['server_id']);
-        $show_members = $params['show_members'] == 'on' ? true : false;
 
-        return WP_Discord_Follow_Widget::render_widget($feed, $params['theme_class'], $show_members);
+        if($params['show_members'] == true) {
+            //legacy
+            $member_count = 3;
+        } else {
+            $member_count = $params['member_count'];
+        }
+
+        return WP_Discord_Follow_Widget::render_widget($feed, $params['theme_class'], $member_count);
     }
 }

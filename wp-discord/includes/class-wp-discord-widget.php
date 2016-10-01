@@ -49,14 +49,41 @@ class WP_Discord_Follow_Widget extends WPH_Widget
                     ],
                     'filter' => 'strip_tags|esc_attr'
                 ],
+                // Member Count Field
                 [
-                    'name' => __('Show Members', 'wp-discord-widgets'),
-                    'desc' => __('Displays online members inside widget.', 'wp-discord-widgets'),
-                    'id' => 'wp-discord-show-members',
-                    'type' => 'checkbox',
-                    'std' => 1, // 0 or 1
-                    'filter' => 'strip_tags|esc_attr',
-                ],
+                    'name' => __('Member Count', 'wp-discord-widget'),
+                    'desc' => __('How Many Online Members would you like widget to display?', 'wp-discord-widget'),
+                    'id' => 'wp-discord-member-count',
+                    'type' => 'select',
+                    'class' => 'widefat',
+                    'fields' => [
+                        [
+                            'name' => __('None', 'wp-discord-widget'),
+                            'value' => '0'
+                        ],
+                        [
+                            'name' => __('3', 'wp-discord-widget'),
+                            'value' => '3'
+                        ],
+                        [
+                            'name' => __('6', 'wp-discord-widget'),
+                            'value' => '6'
+                        ],
+                        [
+                            'name' => __('9', 'wp-discord-widget'),
+                            'value' => '9'
+                        ],
+                        [
+                            'name' => __('12', 'wp-discord-widget'),
+                            'value' => '12'
+                        ],
+                        [
+                            'name' => __('All', 'wp-discord-widget'),
+                            'value' => '-1'
+                        ],
+                    ],
+                    'filter' => 'strip_tags|esc_attr'
+                ]
             ]
         ];
 
@@ -91,7 +118,7 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         return $shuffled_members;
     }
 
-    public static function render_widget($widget_object, $theme_class = 'wpd-white', $show_members = false)
+    public static function render_widget($widget_object, $theme_class = 'wpd-white', $member_count = 3)
     {
         $server_title = $widget_object->name;
         $users_online = self::filter_bots($widget_object->members);
@@ -108,7 +135,7 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         $output .= '<span><strong>' . count($users_online) . '</strong> User(s) Online</span>' . PHP_EOL;
         $output .= '<a href="' . $invite_url . '" target="_blank">Join Server</a>' . PHP_EOL;
 
-        if ($show_members == true && count($users_online) > 0) {
+        if ($member_count != 0 && count($users_online) > 0) {
             $users_online = self::member_shuffle($users_online);
             $user_counter = 0;
             $output .= '<ul class="wpd-users">';
@@ -117,7 +144,7 @@ class WP_Discord_Follow_Widget extends WPH_Widget
                 $user_counter++;
                 $output .= '<li><img src="' . str_replace('https://', '//', $user->avatar_url) . '"><strong>' . $user->username . '</strong><span class="wpd-status ' . $user->status . '"></span></li>';
 
-                if ($user_counter >= 3) {
+                if ($member_count != -1 && $user_counter >= $member_count) {
                     break;
                 }
             }
@@ -137,11 +164,18 @@ class WP_Discord_Follow_Widget extends WPH_Widget
 
         $server_id = $instance['wp-discord-server-id'];
         $theme_class = $instance['wp-discord-theme'];
-        $show_members = $instance['wp-discord-show-members'];
         $widget_object = self::widget_feed($server_id);
+        $member_count = 0;
+
+        if (isset($instance['wp-discord-member-count'])) {
+            $member_count = $instance['wp-discord-member-count'];
+        } elseif (isset($instance['wp-discord-show-members']) && $instance['wp-discord-show-members'] == true) {
+            //legacy
+            $member_count = 3;
+        }
 
         if (is_object($widget_object) && !empty($widget_object)) {
-            $output = self::render_widget($widget_object, $theme_class, $show_members);
+            $output = self::render_widget($widget_object, $theme_class, $member_count);
             echo $output;
         }
     }
