@@ -1,9 +1,9 @@
 === WP Discord ===
-Contributors:
+Contributors: psigel
 Tags: discord, chat, widget
 Requires at least: 4.0.0
 Tested up to: 4.6.1
-Stable tag: 0.1.3
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,10 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 3. Widget Display
 
 == Changelog ==
+
+=0.2.0=
+* Add ability to declare how many online members should be shown in widget.
+
 =0.1.3=
 * CSS Fixes to prevent wordpress conflicts.
 
