@@ -8,8 +8,8 @@ if (!defined('WPINC')) {
 /**
  * Fired during plugin activation
  *
- * @link       http://example.com
- * @since      1.0.0
+ * @link       http://wpdiscord.com
+ * @since     0.1.0
  *
  * @package    WP_Discord
  * @subpackage WP_Discord/includes
@@ -20,7 +20,7 @@ if (!defined('WPINC')) {
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.0.0
+ * @since     0.1.0
  * @package    WP_Discord
  * @subpackage WP_Discord/includes
  * @author     Raymond Perez <ray@rayperez.com>
@@ -33,7 +33,7 @@ class WP_Discord_Activator
      *
      * Long Description.
      *
-     * @since    1.0.0
+     * @since   0.1.0
      */
     public static function activate()
     {

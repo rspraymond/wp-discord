@@ -8,8 +8,8 @@ if (!defined('WPINC')) {
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://example.com
- * @since      1.0.0
+ * @link       http://wpdiscord.com
+ * @since      0.1.0
  *
  * @package    WP_Discord
  * @subpackage WP_Discord/admin
@@ -33,7 +33,7 @@ class WP_Discord_Admin
     /**
      * The ID of this plugin.
      *
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   private
      * @var      string $plugin_name The ID of this plugin.
      */
@@ -42,7 +42,7 @@ class WP_Discord_Admin
     /**
      * The version of this plugin.
      *
-     * @since    1.0.0
+     * @since    0.1.0
      * @access   private
      * @var      string $version The current version of this plugin.
      */
@@ -53,7 +53,7 @@ class WP_Discord_Admin
     /**
      * Initialize the class and set its properties.
      *
-     * @since    1.0.0
+     * @since    0.1.0
      * @param      string $plugin_name The name of this plugin.
      * @param      string $version The version of this plugin.
      */
@@ -77,7 +77,7 @@ class WP_Discord_Admin
     /**
      * Display Options Page
      *
-     * @since 1.0.0
+     * @since 0.1.0
      */
     public function admin_options()
     {
@@ -97,7 +97,7 @@ class WP_Discord_Admin
     /**
      * Register the stylesheets for the admin area.
      *
-     * @since    1.0.0
+     * @since    0.1.0
      */
     public function enqueue_styles()
     {
@@ -107,7 +107,7 @@ class WP_Discord_Admin
     /**
      * Register the JavaScript for the admin area.
      *
-     * @since    1.0.0
+     * @since    0.1.0
      */
     public function enqueue_scripts()
     {

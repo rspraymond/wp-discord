@@ -9,7 +9,7 @@
  * that starts the plugin.
  *
  * @link              https://wordpress.org/plugins/wp-discord/
- * @since             1.0.0
+ * @since             0.1.0
  * @package           WP_Discord
  *
  * @wordpress-plugin
@@ -66,7 +66,7 @@ require plugin_dir_path(__FILE__) . 'includes/class-wp-discord.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
+ * @since    0.1.0
  */
 function run_wp_discord()
 {
