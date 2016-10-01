@@ -29,14 +29,14 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 
 == Changelog ==
 
-=0.2.1=
+= 0.2.1 =
 * Update contributors
 * Update widget config screenshot
 
-=0.2.0=
+= 0.2.0 =
 * Add ability to declare how many online members should be shown in widget.
 
-=0.1.3=
+= 0.1.3 =
 * CSS Fixes to prevent wordpress conflicts.
 
 = 0.1.2 =
