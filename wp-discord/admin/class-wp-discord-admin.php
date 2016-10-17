@@ -71,7 +71,7 @@ class WP_Discord_Admin
     public function admin_menu()
     {
         $display_name = 'WP Discord';
-        add_menu_page($display_name, $display_name, 'manage_options', $this->plugin_name, array($this, 'admin_options'), 'dashicons-admin-generic');
+        add_menu_page($display_name, $display_name, 'manage_options', $this->plugin_name, array($this, 'admin_options'), plugin_dir_url(__FILE__) . '../assets/icon-16x16.png');
     }
 
     /**
