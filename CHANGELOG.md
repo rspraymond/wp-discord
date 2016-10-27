@@ -1,5 +1,12 @@
 # Changelog
 
+### V0.2.2 - 2016-10-26
+* Force widget box sizing for themes without it.
+
+### V0.2.1 - 2016-10-01
+* Update contributors
+* Update widget config screenshot
+
 ### V0.2.0 - 2016-10-01
 * Add ability to declare how many online members should be shown in widget.
 
