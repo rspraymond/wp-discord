@@ -13,7 +13,8 @@
   border-radius: 9px;
   background: #fff;
   font-family: "Open Sans",sans-serif;
-  color: #23272A; }
+  color: #23272A;
+  box-sizing: border-box; }
 
 #wp-discord .wpd-head {
   overflow: hidden;

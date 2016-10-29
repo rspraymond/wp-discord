@@ -19,6 +19,8 @@ $font: 'Open Sans', sans-serif;
   background: $white;
   font-family: $font;
   color: $darker;
+  box-sizing: border-box;
+
   .wpd-head {
     overflow: hidden;
     border-bottom: 1px solid $greyple;
