@@ -1,5 +1,8 @@
 # Changelog
 
+### V0.2.3 - 2016-11-07
+* Bug fixes for missing invite links. Adjust setup steps.
+
 ### V0.2.2 - 2016-10-26
 * Force widget box sizing for themes without it.
 

@@ -133,7 +133,10 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         $output .= '</div>' . PHP_EOL;
         $output .= '<div class="wpd-info">' . PHP_EOL;
         $output .= '<span><strong>' . count($users_online) . '</strong> User(s) Online</span>' . PHP_EOL;
-        $output .= '<a href="' . $invite_url . '" target="_blank">Join Server</a>' . PHP_EOL;
+
+        if (!empty($invite_url)) {
+            $output .= '<a href="' . $invite_url . '" target="_blank">Join Server</a>' . PHP_EOL;
+        }
 
         if ($member_count != 0 && count($users_online) > 0) {
             $users_online = self::member_shuffle($users_online);
