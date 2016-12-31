@@ -20,7 +20,6 @@ if (!defined('WPINC')) {
  */
 
 if (!class_exists('WPH_Widget')) {
-
     class WPH_Widget extends WP_Widget
     {
 
@@ -35,7 +34,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function create_widget($args)
+        public function create_widget($args)
         {
             // settings some defaults
             $defaults = array(
@@ -57,11 +56,12 @@ if (!class_exists('WPH_Widget')) {
 
             // check options
             $this->options = array('classname' => $this->slug, 'description' => $description);
-            if (!empty($options)) $this->options = array_merge($this->options, $options);
+            if (!empty($options)) {
+                $this->options = array_merge($this->options, $options);
+            }
 
             // call WP_Widget to create the widget
             parent::__construct($this->slug, $label, $this->options);
-
         }
 
 
@@ -76,7 +76,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function form($instance)
+        public function form($instance)
         {
             $this->instance = $instance;
             $form = $this->create_fields();
@@ -95,7 +95,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function update($new_instance, $old_instance)
+        public function update($new_instance, $old_instance)
         {
             $instance = $old_instance;
 
@@ -105,14 +105,16 @@ if (!class_exists('WPH_Widget')) {
                 $slug = $key['id'];
 
                 if (isset($key['validate'])) {
-                    if (false === $this->validate($key['validate'], $new_instance[$slug]))
+                    if (false === $this->validate($key['validate'], $new_instance[$slug])) {
                         return $instance;
+                    }
                 }
 
-                if (isset($key['filter']))
+                if (isset($key['filter'])) {
                     $instance[$slug] = $this->filter($key['filter'], $new_instance[$slug]);
-                else
+                } else {
                     $instance[$slug] = strip_tags($new_instance[$slug]);
+                }
             }
 
             return $this->after_validate_fields($instance);
@@ -130,7 +132,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.6
          */
 
-        function before_update_fields()
+        public function before_update_fields()
         {
             return;
         }
@@ -147,7 +149,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.6
          */
 
-        function after_validate_fields($instance = "")
+        public function after_validate_fields($instance = "")
         {
             return $instance;
         }
@@ -163,16 +165,18 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function validate($rules, $value)
+        public function validate($rules, $value)
         {
             $rules = explode('|', $rules);
 
-            if (empty($rules) || count($rules) < 1)
+            if (empty($rules) || count($rules) < 1) {
                 return true;
+            }
 
             foreach ($rules as $rule) {
-                if (false === $this->do_validation($rule, $value))
+                if (false === $this->do_validation($rule, $value)) {
                     return false;
+                }
             }
 
             return true;
@@ -189,15 +193,17 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function filter($filters, $value)
+        public function filter($filters, $value)
         {
             $filters = explode('|', $filters);
 
-            if (empty($filters) || count($filters) < 1)
+            if (empty($filters) || count($filters) < 1) {
                 return $value;
+            }
 
-            foreach ($filters as $filter)
+            foreach ($filters as $filter) {
                 $value = $this->do_filter($filter, $value);
+            }
 
             return $value;
         }
@@ -213,7 +219,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function do_validation($rule, $value = "")
+        public function do_validation($rule, $value = "")
         {
             switch ($rule) {
 
@@ -254,16 +260,21 @@ if (!class_exists('WPH_Widget')) {
                     return;
 
                 case 'natural_not_zero':
-                    if (!preg_match('/^[0-9]+$/', $value)) return false;
-                    if ($value == 0) return false;
+                    if (!preg_match('/^[0-9]+$/', $value)) {
+                        return false;
+                    }
+                    if ($value == 0) {
+                        return false;
+                    }
                     return true;
                     return;
 
                 default:
-                    if (method_exists($this, $rule))
+                    if (method_exists($this, $rule)) {
                         return $this->$rule($value);
-                    else
+                    } else {
                         return false;
+                    }
                     break;
 
             }
@@ -280,7 +291,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function do_filter($filter, $value = "")
+        public function do_filter($filter, $value = "")
         {
             switch ($filter) {
                 case 'strip_tags':
@@ -304,10 +315,11 @@ if (!class_exists('WPH_Widget')) {
                     break;
 
                 default:
-                    if (method_exists($this, $filter))
+                    if (method_exists($this, $filter)) {
                         return $this->$filter($value);
-                    else
+                    } else {
                         return $value;
+                    }
                     break;
             }
         }
@@ -324,14 +336,14 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function create_fields($out = "")
+        public function create_fields($out = "")
         {
-
             $out = $this->before_create_fields($out);
 
             if (!empty($this->fields)) {
-                foreach ($this->fields as $key)
+                foreach ($this->fields as $key) {
                     $out .= $this->create_field($key);
+                }
             }
 
             $out = $this->after_create_fields($out);
@@ -351,7 +363,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function before_create_fields($out = "")
+        public function before_create_fields($out = "")
         {
             return $out;
         }
@@ -368,7 +380,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function after_create_fields($out = "")
+        public function after_create_fields($out = "")
         {
             return $out;
         }
@@ -384,7 +396,7 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.0
          */
 
-        function create_field($key, $out = "")
+        public function create_field($key, $out = "")
         {
 
             /* Set Defaults */
@@ -392,17 +404,20 @@ if (!class_exists('WPH_Widget')) {
 
             $slug = $key['id'];
 
-            if (isset($this->instance[$slug]))
+            if (isset($this->instance[$slug])) {
                 $key['value'] = empty($this->instance[$slug]) ? '' : strip_tags($this->instance[$slug]);
-            else
+            } else {
                 unset($key['value']);
+            }
 
             /* Set field id and name  */
             $key['_id'] = $this->get_field_id($slug);
             $key['_name'] = $this->get_field_name($slug);
 
             /* Set field type */
-            if (!isset($key['type'])) $key['type'] = 'text';
+            if (!isset($key['type'])) {
+                $key['type'] = 'text';
+            }
 
             /* Prefix method */
             $field_method = 'create_field_' . str_replace('-', '_', $key['type']);
@@ -411,9 +426,9 @@ if (!class_exists('WPH_Widget')) {
             $p = (isset($key['class-p'])) ? '<p class="' . $key['class-p'] . '">' : '<p>';
 
             /* Run method */
-            if (method_exists($this, $field_method))
+            if (method_exists($this, $field_method)) {
                 return $p . $this->$field_method($key) . '</p>';
-
+            }
         }
 
 
@@ -427,26 +442,29 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.5
          */
 
-        function create_field_text($key, $out = "")
+        public function create_field_text($key, $out = "")
         {
             $out .= $this->create_field_label($key['name'], $key['_id']) . '<br/>';
 
             $out .= '<input type="text" ';
 
-            if (isset($key['class']))
+            if (isset($key['class'])) {
                 $out .= 'class="' . esc_attr($key['class']) . '" ';
+            }
 
             $value = isset($key['value']) ? $key['value'] : $key['std'];
 
             $out .= 'id="' . esc_attr($key['_id']) . '" name="' . esc_attr($key['_name']) . '" value="' . esc_attr__($value) . '" ';
 
-            if (isset($key['size']))
+            if (isset($key['size'])) {
                 $out .= 'size="' . esc_attr($key['size']) . '" ';
+            }
 
             $out .= ' />';
 
-            if (isset($key['desc']))
+            if (isset($key['desc'])) {
                 $out .= '<br/><small class="description">' . esc_html($key['desc']) . '</small>';
+            }
 
             return $out;
         }
@@ -462,20 +480,23 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.5
          */
 
-        function create_field_textarea($key, $out = "")
+        public function create_field_textarea($key, $out = "")
         {
             $out .= $this->create_field_label($key['name'], $key['_id']) . '<br/>';
 
             $out .= '<textarea ';
 
-            if (isset($key['class']))
+            if (isset($key['class'])) {
                 $out .= 'class="' . esc_attr($key['class']) . '" ';
+            }
 
-            if (isset($key['rows']))
+            if (isset($key['rows'])) {
                 $out .= 'rows="' . esc_attr($key['rows']) . '" ';
+            }
 
-            if (isset($key['cols']))
+            if (isset($key['cols'])) {
                 $out .= 'cols="' . esc_attr($key['cols']) . '" ';
+            }
 
             $value = isset($key['value']) ? $key['value'] : $key['std'];
 
@@ -483,8 +504,9 @@ if (!class_exists('WPH_Widget')) {
 
             $out .= '</textarea>';
 
-            if (isset($key['desc']))
+            if (isset($key['desc'])) {
                 $out .= '<br/><small class="description">' . esc_html($key['desc']) . '</small>';
+            }
 
             return $out;
         }
@@ -500,24 +522,27 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.5
          */
 
-        function create_field_checkbox($key, $out = "")
+        public function create_field_checkbox($key, $out = "")
         {
             $out .= $this->create_field_label($key['name'], $key['_id']);
 
             $out .= ' <input type="checkbox" ';
 
-            if (isset($key['class']))
+            if (isset($key['class'])) {
                 $out .= 'class="' . esc_attr($key['class']) . '" ';
+            }
 
             $out .= 'id="' . esc_attr($key['_id']) . '" name="' . esc_attr($key['_name']) . '" value="1" ';
 
-            if ((isset($key['value']) && $key['value'] == 1) OR (!isset($key['value']) && $key['std'] == 1))
+            if ((isset($key['value']) && $key['value'] == 1) or (!isset($key['value']) && $key['std'] == 1)) {
                 $out .= ' checked="checked" ';
+            }
 
             $out .= ' /> ';
 
-            if (isset($key['desc']))
+            if (isset($key['desc'])) {
                 $out .= '<br/><small class="description">' . esc_html($key['desc']) . '</small>';
+            }
 
             return $out;
         }
@@ -533,34 +558,35 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.5
          */
 
-        function create_field_select($key, $out = "")
+        public function create_field_select($key, $out = "")
         {
             $out .= $this->create_field_label($key['name'], $key['_id']) . '<br/>';
 
             $out .= '<select id="' . esc_attr($key['_id']) . '" name="' . esc_attr($key['_name']) . '" ';
 
-            if (isset($key['class']))
+            if (isset($key['class'])) {
                 $out .= 'class="' . esc_attr($key['class']) . '" ';
+            }
 
             $out .= '> ';
 
             $selected = isset($key['value']) ? $key['value'] : $key['std'];
 
             foreach ($key['fields'] as $field => $option) {
-
                 $out .= '<option value="' . esc_attr__($option['value']) . '" ';
 
-                if (esc_attr($selected) == $option['value'])
+                if (esc_attr($selected) == $option['value']) {
                     $out .= ' selected="selected" ';
+                }
 
                 $out .= '> ' . esc_html($option['name']) . '</option>';
-
             }
 
             $out .= ' </select> ';
 
-            if (isset($key['desc']))
+            if (isset($key['desc'])) {
                 $out .= '<br/><small class="description">' . esc_html($key['desc']) . '</small>';
+            }
 
             return $out;
         }
@@ -576,41 +602,41 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.5
          */
 
-        function create_field_select_group($key, $out = "")
+        public function create_field_select_group($key, $out = "")
         {
-
             $out .= $this->create_field_label($key['name'], $key['_id']) . '<br/>';
 
             $out .= '<select id="' . esc_attr($key['_id']) . '" name="' . esc_attr($key['_name']) . '" ';
 
-            if (isset($key['class']))
+            if (isset($key['class'])) {
                 $out .= 'class="' . esc_attr($key['class']) . '" ';
+            }
 
             $out .= '> ';
 
             $selected = isset($key['value']) ? $key['value'] : $key['std'];
 
             foreach ($key['fields'] as $group => $fields) {
-
                 $out .= '<optgroup label="' . $group . '">';
 
                 foreach ($fields as $field => $option) {
                     $out .= '<option value="' . esc_attr($option['value']) . '" ';
 
-                    if (esc_attr($selected) == $option['value'])
+                    if (esc_attr($selected) == $option['value']) {
                         $out .= ' selected="selected" ';
+                    }
 
                     $out .= '> ' . esc_html($option['name']) . '</option>';
                 }
 
                 $out .= '</optgroup>';
-
             }
 
             $out .= '</select>';
 
-            if (isset($key['desc']))
+            if (isset($key['desc'])) {
                 $out .= '<br/><small class="description">' . esc_html($key['desc']) . '</small>';
+            }
 
             return $out;
         }
@@ -626,26 +652,29 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.5
          */
 
-        function create_field_number($key, $out = "")
+        public function create_field_number($key, $out = "")
         {
             $out .= $this->create_field_label($key['name'], $key['_id']) . '<br/>';
 
             $out .= '<input type="number" ';
 
-            if (isset($key['class']))
+            if (isset($key['class'])) {
                 $out .= 'class="' . esc_attr($key['class']) . '" ';
+            }
 
             $value = isset($key['value']) ? $key['value'] : $key['std'];
 
             $out .= 'id="' . esc_attr($key['_id']) . '" name="' . esc_attr($key['_name']) . '" value="' . esc_attr__($value) . '" ';
 
-            if (isset($key['size']))
+            if (isset($key['size'])) {
                 $out .= 'size="' . esc_attr($key['size']) . '" ';
+            }
 
             $out .= ' />';
 
-            if (isset($key['desc']))
+            if (isset($key['desc'])) {
                 $out .= '<br/><small class="description">' . esc_html($key['desc']) . '</small>';
+            }
 
             return $out;
         }
@@ -661,10 +690,9 @@ if (!class_exists('WPH_Widget')) {
          * @since    1.5
          */
 
-        function create_field_label($name = "", $id = "")
+        public function create_field_label($name = "", $id = "")
         {
             return '<label for="' . esc_attr($id) . '">' . esc_html($name) . ':</label>';
         }
-
     } // class
 }

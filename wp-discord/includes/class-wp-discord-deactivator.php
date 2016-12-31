@@ -37,7 +37,5 @@ class WP_Discord_Deactivator
      */
     public static function deactivate()
     {
-
     }
-
 }

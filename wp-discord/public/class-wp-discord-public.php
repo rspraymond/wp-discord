@@ -55,10 +55,8 @@ class WP_Discord_Public
      */
     public function __construct($plugin_name, $version)
     {
-
         $this->plugin_name = $plugin_name;
         $this->version = $version;
-
     }
 
     /**
@@ -82,7 +80,6 @@ class WP_Discord_Public
          */
 
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wp-discord.css', array(), $this->version, 'all');
-
     }
 
     /**
@@ -106,7 +103,5 @@ class WP_Discord_Public
          */
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wp-discord.js', array('jquery'), $this->version, false);
-
     }
-
 }

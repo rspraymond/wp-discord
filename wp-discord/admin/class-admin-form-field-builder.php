@@ -7,8 +7,11 @@ if (!defined('WPINC')) {
 
 class AdminFormFieldBuilder
 {
-
-    public $name, $type = 'text', $value = null, $attr = [], $placeholder = null;
+    public $name;
+    public $type = 'text';
+    public $value = null;
+    public $attr = [];
+    public $placeholder = null;
 
     /**
      * AdminFormFieldBuilder constructor.
@@ -75,11 +78,10 @@ class AdminFormFieldBuilder
         //@TODO textarea_field_render
     }
 
-    public static function render_field($params) {
+    public static function render_field($params)
+    {
         $field = new self($params);
 
         $field->render();
     }
-
-
 }

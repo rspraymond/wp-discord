@@ -54,10 +54,8 @@ class WP_Discord_Loader
      */
     public function __construct()
     {
-
         $this->actions = array();
         $this->filters = array();
-
     }
 
     /**
@@ -91,7 +89,6 @@ class WP_Discord_Loader
      */
     private function add($hooks, $hook, $component, $callback, $priority, $accepted_args)
     {
-
         $hooks[] = array(
             'hook' => $hook,
             'component' => $component,
@@ -101,7 +98,6 @@ class WP_Discord_Loader
         );
 
         return $hooks;
-
     }
 
     /**
@@ -126,7 +122,6 @@ class WP_Discord_Loader
      */
     public function run()
     {
-
         foreach ($this->filters as $hook) {
             add_filter($hook['hook'], array($hook['component'], $hook['callback']), $hook['priority'], $hook['accepted_args']);
         }
@@ -134,7 +129,5 @@ class WP_Discord_Loader
         foreach ($this->actions as $hook) {
             add_action($hook['hook'], array($hook['component'], $hook['callback']), $hook['priority'], $hook['accepted_args']);
         }
-
     }
-
 }

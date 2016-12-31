@@ -59,10 +59,8 @@ class WP_Discord_Admin
      */
     public function __construct($plugin_name, $version)
     {
-
         $this->plugin_name = $plugin_name;
         $this->version = $version;
-
     }
 
     /**
@@ -116,7 +114,6 @@ class WP_Discord_Admin
 
     public function get_tabs()
     {
-
         $tabs = [];
 
         foreach ($this->tabs as $tab_name) {
@@ -129,7 +126,7 @@ class WP_Discord_Admin
 
     public function register_shortcodes()
     {
-        $shortcodes = New WP_Discord_Shortcodes();
+        $shortcodes = new WP_Discord_Shortcodes();
         $shortcodes->generate();
     }
 
@@ -137,5 +134,4 @@ class WP_Discord_Admin
     {
         register_widget('WP_Discord_Follow_Widget');
     }
-
 }

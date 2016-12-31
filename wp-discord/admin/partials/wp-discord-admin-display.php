@@ -25,10 +25,11 @@ if (!defined('WPINC')) {
     <h2 class="nav-tab-wrapper">
         <?php
 
-        foreach($tabs as $tab) {
+        foreach ($tabs as $tab) {
             ?>
                 <a href="?page=wp-discord&tab=<?php echo $tab->name; ?>" class="nav-tab <?php echo $active_tab == $tab->name ? 'nav-tab-active' : ''; ?>"><?php echo $tab->get_display_name() ?></a>
             <?php
+
         }
 
         ?>
