@@ -37,7 +37,5 @@ class WP_Discord_Activator
      */
     public static function activate()
     {
-
     }
-
 }

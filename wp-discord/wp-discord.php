@@ -70,10 +70,8 @@ require plugin_dir_path(__FILE__) . 'includes/class-wp-discord.php';
  */
 function run_wp_discord()
 {
-
     $plugin = new WP_Discord();
     $plugin->run();
-
 }
 
 run_wp_discord();

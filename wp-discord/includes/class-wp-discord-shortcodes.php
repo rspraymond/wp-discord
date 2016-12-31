@@ -42,7 +42,7 @@ class WP_Discord_Shortcodes
 
         $feed = WP_Discord_Follow_Widget::widget_feed($params['server_id']);
 
-        if($params['show_members'] == true) {
+        if ($params['show_members'] == true) {
             //legacy
             $member_count = 3;
         } else {

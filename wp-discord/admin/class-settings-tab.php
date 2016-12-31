@@ -9,7 +9,10 @@ include_once(plugin_dir_path(__FILE__) . 'class-admin-form-field-builder.php');
 
 class SettingsTab
 {
-    public $partial, $name, $fields = [], $params = [];
+    public $partial;
+    public $name;
+    public $fields = [];
+    public $params = [];
 
     public function __construct($name, $partial = null, $params = [])
     {

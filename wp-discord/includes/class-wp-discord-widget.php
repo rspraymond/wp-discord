@@ -164,7 +164,6 @@ class WP_Discord_Follow_Widget extends WPH_Widget
     // Output function
     public function widget($args, $instance)
     {
-
         $server_id = $instance['wp-discord-server-id'];
         $theme_class = $instance['wp-discord-theme'];
         $widget_object = self::widget_feed($server_id);

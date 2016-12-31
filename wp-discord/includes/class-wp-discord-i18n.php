@@ -40,14 +40,10 @@ class WP_Discord_i18n
      */
     public function load_plugin_textdomain()
     {
-
         load_plugin_textdomain(
             'wp-discord',
             false,
             dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
         );
-
     }
-
-
 }
