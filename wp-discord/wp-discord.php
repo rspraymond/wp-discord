@@ -57,7 +57,9 @@ register_deactivation_hook(__FILE__, 'deactivate_wp_discord');
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-wp-discord.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-wp-discord.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-discord-api-wrapper.php';
+require plugin_dir_path(__FILE__) . 'includes/class-wp-discord-guild.php';
 
 /**
  * Begins execution of the plugin.
