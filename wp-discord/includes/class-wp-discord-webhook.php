@@ -21,11 +21,22 @@ class WP_Discord_Webhook
         }
     }
 
-    public function post_message($message)
+    /**
+     * Post content to a discord channel.
+     * @param array|string $content
+     * @return mixed
+     */
+    public function post_content($content)
     {
         $url = 'https://discordapp.com/api/webhooks/' . $this->id . '/' . $this->token;
 
-        $response = DiscordApiWrapper::postRequest($url, $this->guild->bot_token, ['content' => $message]);
+        if (!is_array($content)) {
+            $content = [
+                'content' => $content
+            ];
+        }
+
+        $response = DiscordApiWrapper::postRequest($url, $this->guild->bot_token, $content);
 
         return $response;
     }

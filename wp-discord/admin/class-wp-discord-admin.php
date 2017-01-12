@@ -124,6 +124,47 @@ class WP_Discord_Admin
         return $tabs;
     }
 
+    /**
+     * Register events for when a post has been published
+     * @param $new_status
+     * @param $old_status
+     * @param $post
+     *
+     */
+    public function post_published_event($ID, $post)
+    {
+        $server_id = '';
+        $auth_token = '';
+        $webhook_id = '';
+        $guild = new WP_Discord_Guild($server_id, $auth_token);
+        $webhook = $guild->get_webhook($webhook_id);
+
+        if (empty($post->post_excerpt)) {
+            $description = strip_tags(substr($post->post_content, 0, 150)) . '...';
+        } else {
+            $description = $post->post_excerpt;
+        }
+
+        $content = [
+            'embeds' => [
+                [
+                    'title' => $post->post_title,
+                    'url' => get_permalink($ID),
+                    'type' => 'rich',
+                    //'timestamp' => date(DATE_ATOM, strtotime($post->post_modified_gmt)),
+                    'description' => $description,
+                    /*'author' => [
+                        'name' => '',
+                        'url' => '',
+                        'icon_url' => ''
+                    ]*/
+                ]
+            ]
+        ];
+
+        $webhook->post_content($content);
+    }
+
     public function register_shortcodes()
     {
         $shortcodes = new WP_Discord_Shortcodes();

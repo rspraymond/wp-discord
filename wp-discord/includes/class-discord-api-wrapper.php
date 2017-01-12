@@ -7,6 +7,13 @@ if (!defined('WPINC')) {
 
 class DiscordApiWrapper
 {
+
+    /**
+     * Handles get requests for Discord.
+     * @param $url
+     * @param $bot_token
+     * @return mixed
+     */
     public static function getRequest($url, $bot_token)
     {
         $ch = curl_init();
@@ -29,6 +36,13 @@ class DiscordApiWrapper
         return $response;
     }
 
+    /**
+     * Handles post requests for Discord.
+     * @param $url API request URL
+     * @param $bot_token
+     * @param array $params
+     * @return mixed
+     */
     public static function postRequest($url, $bot_token, array $params)
     {
         $ch = curl_init();
