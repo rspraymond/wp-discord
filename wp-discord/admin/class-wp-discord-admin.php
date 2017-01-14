@@ -49,6 +49,7 @@ class WP_Discord_Admin
     private $version;
 
     public $tabs = ['discord', 'settings'];
+    public $guild = null;
 
     /**
      * Initialize the class and set its properties.
@@ -61,6 +62,7 @@ class WP_Discord_Admin
     {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
+        $this->set_guild();
     }
 
     /**
@@ -115,9 +117,29 @@ class WP_Discord_Admin
     public function get_tabs()
     {
         $tabs = [];
+        $args = array(
+            'public'   => true,
+        );
+
+        $post_types = get_post_types($args, 'objects');
+        $banned_types = ['attachment', 'nav_menu_item', 'revision'];
+
+        //cleanup
+        foreach ($post_types as $key => $type) {
+            if (in_array($type->name, $banned_types)) {
+                unset($post_types[$key]);
+            }
+        }
 
         foreach ($this->tabs as $tab_name) {
-            $settings_tab = new SettingsTab($tab_name);
+            $settings_tab = new SettingsTab($tab_name, ['post_types' => $post_types]);
+
+            switch ($tab_name) {
+                case 'settings':
+                    $settings_tab->channels = $this->guild->get_channels('text');
+                    break;
+            }
+
             $tabs[$tab_name] = $settings_tab;
         }
 
@@ -133,11 +155,8 @@ class WP_Discord_Admin
      */
     public function post_published_event($ID, $post)
     {
-        $server_id = '';
-        $auth_token = '';
         $webhook_id = '';
-        $guild = new WP_Discord_Guild($server_id, $auth_token);
-        $webhook = $guild->get_webhook($webhook_id);
+        $webhook = $this->guild->get_webhook($webhook_id);
 
         if (empty($post->post_excerpt)) {
             $description = strip_tags(substr($post->post_content, 0, 150)) . '...';
@@ -174,5 +193,19 @@ class WP_Discord_Admin
     public function register_widgets()
     {
         register_widget('WP_Discord_Follow_Widget');
+    }
+
+    public function save_settings()
+    {
+        // Handle request then generate response using echo or leaving PHP and using HTML
+        check_admin_referer(WPD_PREFIX . 'save_settings');
+        die(var_dump($_POST));
+    }
+
+    private function set_guild()
+    {
+        $server_id = '';
+        $auth_token = '';
+        $this->guild = new WP_Discord_Guild($server_id, $auth_token);
     }
 }

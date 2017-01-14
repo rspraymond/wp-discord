@@ -14,7 +14,7 @@ class SettingsTab
     public $fields = [];
     public $params = [];
 
-    public function __construct($name, $partial = null, $params = [])
+    public function __construct($name, $attr = [], $partial = null)
     {
         $this->name = $name;
 
@@ -24,10 +24,8 @@ class SettingsTab
             $this->partial = $partial;
         }
 
-        $this->params = $params;
-
-        if (isset($this->params['fields'])) {
-            $this->fields = $this->params['fields'];
+        foreach ($attr as $key => $value) {
+            $this->{$key} = $value;
         }
 
         $this->set_fields();
@@ -35,7 +33,9 @@ class SettingsTab
 
     public function display()
     {
-        $this->set_params();
+        foreach (get_object_vars($this) as $key => $value) {
+            ${$key} = $value;
+        }
 
         echo '<div class="postbox"><div class="inside">';
         include $this->partial;
@@ -63,13 +63,6 @@ class SettingsTab
 
         foreach ($this->fields as $key => $params) {
             $this->fields[$key] = new AdminFormFieldBuilder($params);
-        }
-    }
-
-    public function set_params()
-    {
-        foreach ($this->params as $key => $param) {
-            $$key = $param;
         }
     }
 }

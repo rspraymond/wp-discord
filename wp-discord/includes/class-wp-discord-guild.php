@@ -27,13 +27,23 @@ class WP_Discord_Guild
         return json_decode($response);
     }
 
-    public function get_channels()
+    public function get_channels($type = null)
     {
         $url = 'https://discordapp.com/api/guilds/' . $this->id . '/channels';
 
         $response = DiscordApiWrapper::getRequest($url, $this->bot_token);
 
-        return json_decode($response);
+        $channels = json_decode($response);
+
+        if (!empty($type)) {
+            foreach ($channels as $key => $channel) {
+                if ($channel->type !== $type) {
+                    unset($channels[$key]);
+                }
+            }
+        }
+
+        return $channels;
     }
 
     public function get_webhooks()

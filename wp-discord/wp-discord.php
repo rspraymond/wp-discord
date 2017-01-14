@@ -30,6 +30,10 @@ if (!defined('WPINC')) {
     die;
 }
 
+if (!defined('WPD_PREFIX')) {
+    define('WPD_PREFIX', 'wpd_');
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wp-discord-activator.php

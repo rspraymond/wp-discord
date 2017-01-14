@@ -36,8 +36,9 @@ if (!defined('WPINC')) {
     </h2>
 
 
-    <form method="post" action="options.php">
-
+    <form method="post" action="/wp-admin/admin-post.php">
+        <?php wp_nonce_field(WPD_PREFIX . 'save_settings'); ?>
+        <input type="hidden" name="action" value="<?php echo WPD_PREFIX; ?>save_settings">
         <?php
 
         if (isset($tabs[$active_tab])) {

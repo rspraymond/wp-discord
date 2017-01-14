@@ -15,7 +15,7 @@ class AdminFormFieldBuilder
 
     /**
      * AdminFormFieldBuilder constructor.
-     * @param array $params['name', 'type', 'value', 'attr']
+     * @param array $params ['name', 'type', 'value', 'attr']
      */
     public function __construct($params = [])
     {
@@ -53,9 +53,28 @@ class AdminFormFieldBuilder
         //@TODO radio_field_render
     }
 
-    public function select_field_render()
+    public static function select($name, array $options, $selected = null, $attr = [])
     {
-        //@TODO select_field_render
+        $output = '<select name="' . $name;
+
+        foreach ($attr as $key => $value) {
+            $output .= ' ' . $key . '="' . $value . '"';
+        }
+
+        $output .= '">' . PHP_EOL;
+
+        foreach ($options as $value => $text) {
+            $option = '<option value="' . $value . '">' . $text . '</option>' . PHP_EOL;
+
+            if ($selected == $value) {
+                $option = str_replace('<option', '<option selected', $option);
+            }
+
+            $output .= $option;
+        }
+        $output .= '</select>';
+
+        echo $output;
     }
 
     public function text_field_render($type = 'text')

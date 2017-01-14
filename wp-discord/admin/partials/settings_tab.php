@@ -6,29 +6,14 @@ if (!defined('WPINC')) {
 }
 ?>
 
-<h2>Discord Message Templates</h2>
-<div class="wpd-tabs">
+<h2>Discord Channel Settings</h2>
     <ul>
     <?php
-        $args = array(
-            'public'   => true,
-        );
-
-        $post_types = get_post_types($args, 'objects');
-        $banned_types = ['attachment', 'nav_menu_item', 'revision'];
-
-        //cleanup
-        foreach ($post_types as $key => $type) {
-            if (in_array($type->name, $banned_types)) {
-                unset($post_types[$key]);
-            }
-        }
-
         //tab menu
-        foreach ($post_types as $type) {
+        /*foreach ($post_types as $type) {
             $slug = $type->name;
-            echo '<li><a href="#wpd_' . $slug . '" role="tab" id="tab_wpd_' . $slug . '" aria-controls="wpd_' . $slug . '">' . ucwords(str_replace(['-', '_'], ' ', $slug)) . '</a></li>';
-        }
+            echo '<li><a href="#' . WPD_PREFIX . '' . $slug . '" role="tab" id="tab_wpd_' . $slug . '" aria-controls="' WPD_PREFIX . $slug . '">' . ucwords(str_replace(['-', '_'], ' ', $slug)) . '</a></li>';
+        }*/
     ?>
     </ul>
 
@@ -36,12 +21,22 @@ if (!defined('WPINC')) {
         //tabs
         foreach ($post_types as $type) {
             $slug = $type->name; ?>
-                <div id="wpd_<?php echo $slug; ?>">
-                    <?php echo ucwords(str_replace(['-', '_'], ' ', $slug)); ?>
+                <div id="<?php echo WPD_PREFIX . $slug; ?>">
+                    <h3><?php echo ucwords(str_replace(['-', '_'], ' ', $slug)); ?></h3>
+
+                    <?php
+                        $options = [
+                                0 => 'None'
+                        ];
+
+            foreach ($channels as $channel) {
+                $options[$channel->id] = $channel->name;
+            }
+
+            AdminFormFieldBuilder::select(WPD_PREFIX . 'post_channel_' . $type->name, $options); ?>
                 </div>
 
             <?php
 
         }
     ?>
-</div>
