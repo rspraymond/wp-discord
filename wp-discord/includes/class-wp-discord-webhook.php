@@ -5,6 +5,16 @@ if (!defined('WPINC')) {
     die;
 }
 
+/**
+ * Wrapper for Discord Webhooks.
+ *
+ * @link       http://wpdiscord.com
+ * @since      0.3.0
+ *
+ * @package    WP_Discord
+ * @subpackage WP_Discord/includes
+ * @author     Raymond Perez <ray@rayperez.com>
+ */
 class WP_Discord_Webhook
 {
     public function __construct($id, $guild)
@@ -24,6 +34,8 @@ class WP_Discord_Webhook
     /**
      * Post content to a discord channel.
      * @param array|string $content
+     *
+     * @since      0.3.0
      * @return mixed
      */
     public function post_content($content)

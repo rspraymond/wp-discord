@@ -43,6 +43,13 @@ class AdminFormFieldBuilder
         //@TODO checkbox_field_render
     }
 
+    /**
+     * Build a standard label html element.
+     * @param string $name Field name for label.
+     * @param string $label Label Text
+     *
+     * @since    0.3.0
+     */
     public static function label($name, $label)
     {
         $output = '<label for="' . $name . '">' . $label . '</label>' . PHP_EOL;
@@ -60,6 +67,15 @@ class AdminFormFieldBuilder
         //@TODO radio_field_render
     }
 
+    /**
+     * Build a standard select html element.
+     * @param string $name
+     * @param array $options
+     * @param mixed $selected
+     * @param array $attr
+     *
+     * @since    0.3.0
+     */
     public static function select($name, array $options, $selected = null, $attr = [])
     {
         $output = '<select name="' . $name;

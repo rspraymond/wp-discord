@@ -12,6 +12,8 @@ class DiscordApiWrapper
      * Handles get requests for Discord.
      * @param $url
      * @param $bot_token
+     *
+     * @since    0.3.0
      * @return mixed
      */
     public static function getRequest($url, $bot_token)
@@ -41,6 +43,8 @@ class DiscordApiWrapper
      * @param $url API request URL
      * @param $bot_token
      * @param array $params
+     *
+     * @since    0.3.0
      * @return mixed
      */
     public static function postRequest($url, $bot_token, array $params)

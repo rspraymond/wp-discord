@@ -123,6 +123,12 @@ class WP_Discord_Admin
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wp-discord-admin.js', array('jquery'), $this->version, false);
     }
 
+    /**
+     * Grab admin setting stabs.
+     *
+     * @since 0.3.0
+     * @return array
+     */
     public function get_tabs()
     {
         $tabs = [];
@@ -161,6 +167,7 @@ class WP_Discord_Admin
      * @param $old_status
      * @param $post
      *
+     * @since    0.3.0
      */
     public function post_published_event($new_status, $old_status, $post)
     {
@@ -173,7 +180,7 @@ class WP_Discord_Admin
 
         // If we do not get a webhook back. No need to try and post to Discord.
         if (empty($webhook)) {
-            return false;
+            return true;
         }
 
         if (empty($post->post_excerpt)) {
@@ -213,6 +220,11 @@ class WP_Discord_Admin
         register_widget('WP_Discord_Follow_Widget');
     }
 
+    /**
+     * Save admin settings.
+     *
+     * @since    0.3.0
+     */
     public function save_settings()
     {
         // Handle request then generate response using echo or leaving PHP and using HTML
@@ -234,6 +246,11 @@ class WP_Discord_Admin
         exit;
     }
 
+    /**
+     * Setup Discord Guild.
+     *
+     * @since    0.3.0
+     */
     private function set_guild()
     {
         $server_id = '';
