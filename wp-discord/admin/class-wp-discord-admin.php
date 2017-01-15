@@ -81,10 +81,19 @@ class WP_Discord_Admin
      */
     public function admin_options()
     {
+        $notices = [];
+
         if (isset($_GET['tab'])) {
             $active_tab = $_GET['tab'];
         } else {
             $active_tab = 'discord';
+        }
+
+        if (isset($_GET['success'])) {
+            $notices[] = [
+                'class' => 'notice-success',
+                'message' => ucfirst(str_replace('_', ' ', $_GET['success']))
+            ];
         }
 
         $title = 'WP Discord Options';
@@ -118,7 +127,7 @@ class WP_Discord_Admin
     {
         $tabs = [];
         $args = array(
-            'public'   => true,
+            'public' => true,
         );
 
         $post_types = get_post_types($args, 'objects');
@@ -153,10 +162,19 @@ class WP_Discord_Admin
      * @param $post
      *
      */
-    public function post_published_event($ID, $post)
+    public function post_published_event($new_status, $old_status, $post)
     {
-        $webhook_id = '';
-        $webhook = $this->guild->get_webhook($webhook_id);
+        // Only post to discord when a post switches from unpublished to published.
+        if ($old_status == 'publish'  ||  $new_status != 'publish') {
+            return true;
+        }
+
+        $webhook = $this->guild->get_post_type_webhook($post->post_type);
+
+        // If we do not get a webhook back. No need to try and post to Discord.
+        if (empty($webhook)) {
+            return false;
+        }
 
         if (empty($post->post_excerpt)) {
             $description = strip_tags(substr($post->post_content, 0, 150)) . '...';
@@ -168,7 +186,7 @@ class WP_Discord_Admin
             'embeds' => [
                 [
                     'title' => $post->post_title,
-                    'url' => get_permalink($ID),
+                    'url' => get_permalink($post->id),
                     'type' => 'rich',
                     //'timestamp' => date(DATE_ATOM, strtotime($post->post_modified_gmt)),
                     'description' => $description,
@@ -199,7 +217,21 @@ class WP_Discord_Admin
     {
         // Handle request then generate response using echo or leaving PHP and using HTML
         check_admin_referer(WPD_PREFIX . 'save_settings');
-        die(var_dump($_POST));
+
+        $settings = $_POST;
+        $redirect_url = $settings['_wp_http_referer'];
+
+        foreach ($settings as $key => $value) {
+            // Handle channel settings
+            if (strpos($key, WPD_PREFIX . 'channel') !== false) {
+                update_option($key, $value);
+            }
+        }
+
+        $redirect_url .= '&success=settings_updated';
+
+        wp_redirect($redirect_url);
+        exit;
     }
 
     private function set_guild()

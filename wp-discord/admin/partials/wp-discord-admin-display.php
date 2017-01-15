@@ -20,6 +20,20 @@ if (!defined('WPINC')) {
 <div class="wrap">
     <div id="icon-themes" class="icon32"></div>
     <h1><?php echo $title; ?></h1>
+
+    <?php
+        // Notices
+        if (isset($notices)) {
+            foreach ($notices as $notice) {
+                ?>
+                <div class="notice <?php echo $notice['class']; ?> is-dismissible">
+                    <p><?php echo $notice['message']; ?></p>
+                </div>
+                <?php
+
+            }
+        }
+    ?>
     <?php settings_errors(); ?>
 
     <h2 class="nav-tab-wrapper">

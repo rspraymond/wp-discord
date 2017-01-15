@@ -17,23 +17,26 @@ if (!defined('WPINC')) {
     ?>
     </ul>
 
+    <p class="description"></p>
     <?php
-        //tabs
         foreach ($post_types as $type) {
             $slug = $type->name; ?>
                 <div id="<?php echo WPD_PREFIX . $slug; ?>">
                     <h3><?php echo ucwords(str_replace(['-', '_'], ' ', $slug)); ?></h3>
 
-                    <?php
-                        $options = [
-                                0 => 'None'
-                        ];
+            <?php
+                    $options = [
+                        0 => 'none'
+                    ];
 
             foreach ($channels as $channel) {
-                $options[$channel->id] = $channel->name;
+                $options[$channel->id] = '#' . $channel->name;
             }
 
-            AdminFormFieldBuilder::select(WPD_PREFIX . 'post_channel_' . $type->name, $options); ?>
+            $option_name = WPD_PREFIX . 'channel_' . $type->name;
+
+            AdminFormFieldBuilder::label($option_name, 'Select a channel for ' . $type->label);
+            AdminFormFieldBuilder::select($option_name, $options, get_option($option_name, 0)); ?>
                 </div>
 
             <?php

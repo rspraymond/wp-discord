@@ -168,7 +168,7 @@ class WP_Discord
         $this->loader->add_action('widgets_init', $plugin_admin, 'register_widgets');
         $this->loader->add_action('init', $plugin_admin, 'register_shortcodes');
         $this->loader->add_action('admin_post_' . WPD_PREFIX . 'save_settings', $plugin_admin, 'save_settings');
-        //$this->loader->add_action('publish_post', $plugin_admin, 'post_published_event', 10, 3);
+        $this->loader->add_action('transition_post_status', $plugin_admin, 'post_published_event', 10, 3);
     }
 
     /**

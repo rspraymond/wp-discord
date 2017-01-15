@@ -43,6 +43,13 @@ class AdminFormFieldBuilder
         //@TODO checkbox_field_render
     }
 
+    public static function label($name, $label)
+    {
+        $output = '<label for="' . $name . '">' . $label . '</label>' . PHP_EOL;
+
+        echo $output;
+    }
+
     public function number_field_render()
     {
         return $this->text_field_render('number');
@@ -72,7 +79,9 @@ class AdminFormFieldBuilder
 
             $output .= $option;
         }
-        $output .= '</select>';
+
+        $output .= '</select>' . PHP_EOL;
+        ;
 
         echo $output;
     }
