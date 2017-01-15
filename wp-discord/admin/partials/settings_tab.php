@@ -29,6 +29,11 @@ if (!defined('WPINC')) {
                         0 => 'none'
                     ];
 
+            if (empty($channels)) {
+                echo '<p>Channels not found. Please verify that your connection to Discord was setup properly.</p>';
+                continue;
+            }
+
             foreach ($channels as $channel) {
                 $options[$channel->id] = '#' . $channel->name;
             }

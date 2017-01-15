@@ -20,12 +20,12 @@ require_once plugin_dir_path(__FILE__) . '../includes/class-wp-discord-webhook.p
 class WP_Discord_Guild
 {
     public $server_id;
-    public $bot_token;
+    public $token;
 
-    public function __construct($server_id, $bot_token)
+    public function __construct($server_id, $token)
     {
         $this->id = $server_id;
-        $this->bot_token = $bot_token;
+        $this->token = $token;
     }
 
     /**
@@ -40,7 +40,7 @@ class WP_Discord_Guild
     {
         $url = 'https://discordapp.com/api/channels/' . $channel_id . '/webhooks';
 
-        $response = DiscordApiWrapper::postRequest($url, $this->bot_token, ['name' => $name]);
+        $response = DiscordApiWrapper::postRequest($url, $this->token, ['name' => $name]);
 
         return json_decode($response);
     }
@@ -55,7 +55,7 @@ class WP_Discord_Guild
     public function get_channel($channel_id)
     {
         $url = 'https://discordapp.com/api/channels/' . $channel_id;
-        $response = DiscordApiWrapper::getRequest($url, $this->bot_token);
+        $response = DiscordApiWrapper::getRequest($url, $this->token);
 
         return json_decode($response);
     }
@@ -71,7 +71,11 @@ class WP_Discord_Guild
     {
         $url = 'https://discordapp.com/api/guilds/' . $this->id . '/channels';
 
-        $response = DiscordApiWrapper::getRequest($url, $this->bot_token);
+        $response = DiscordApiWrapper::getRequest($url, 'kxvg0SMvqx7CL8FOmzuxkFOmO6nvx1', 'Bearer');
+
+        if (strpos($response, '"code": 0') !== false) {
+            return false;
+        }
 
         $channels = json_decode($response);
 
@@ -130,7 +134,7 @@ class WP_Discord_Guild
             $url = 'https://discordapp.com/api/guilds/' . $this->id . '/webhooks';
         }
 
-        $response = DiscordApiWrapper::getRequest($url, $this->bot_token);
+        $response = DiscordApiWrapper::getRequest($url, $this->token);
 
         return json_decode($response);
     }

@@ -23,7 +23,7 @@ class WP_Discord_Webhook
         $this->guild = $guild;
 
         // Grab info via API
-        $response = json_decode(DiscordApiWrapper::getRequest('https://discordapp.com/api/webhooks/' . $this->id, $this->guild->bot_token));
+        $response = json_decode(DiscordApiWrapper::getRequest('https://discordapp.com/api/webhooks/' . $this->id, $this->guild->token));
         $attr = get_object_vars($response);
 
         foreach ($attr as $key => $value) {
@@ -48,7 +48,7 @@ class WP_Discord_Webhook
             ];
         }
 
-        $response = DiscordApiWrapper::postRequest($url, $this->guild->bot_token, $content);
+        $response = DiscordApiWrapper::postRequest($url, $this->guild->token, $content);
 
         return $response;
     }

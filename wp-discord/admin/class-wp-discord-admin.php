@@ -209,6 +209,7 @@ class WP_Discord_Admin
         $webhook->post_content($content);
     }
 
+
     public function register_shortcodes()
     {
         $shortcodes = new WP_Discord_Shortcodes();
@@ -253,8 +254,8 @@ class WP_Discord_Admin
      */
     private function set_guild()
     {
-        $server_id = '';
-        $auth_token = '';
+        $server_id = get_option(WPD_PREFIX . 'guild_id');
+        $auth_token = get_option(WPD_PREFIX . 'auth_token');
         $this->guild = new WP_Discord_Guild($server_id, $auth_token);
     }
 }
