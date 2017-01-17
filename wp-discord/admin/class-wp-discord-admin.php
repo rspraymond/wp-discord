@@ -148,8 +148,13 @@ class WP_Discord_Admin
 
         foreach ($this->tabs as $tab_name) {
             $settings_tab = new SettingsTab($tab_name, ['post_types' => $post_types]);
-
             switch ($tab_name) {
+                case 'discord':
+                    $settings_tab->guild_id = get_option(WPD_PREFIX . 'guild_id');
+                    $settings_tab->client_id = get_option(WPD_PREFIX . 'client_id');
+                    $settings_tab->auth_token = get_option(WPD_PREFIX . 'auth_token');
+                    $settings_tab->auth_link = 'https://discordapp.com/oauth2/authorize?client_id=' . $settings_tab->client_id . '&scope=bot&permissions=0x20000000';
+                    break;
                 case 'settings':
                     $settings_tab->channels = $this->guild->get_channels('text');
                     break;
@@ -235,10 +240,8 @@ class WP_Discord_Admin
         $redirect_url = $settings['_wp_http_referer'];
 
         foreach ($settings as $key => $value) {
-            // Handle channel settings
-            if (strpos($key, WPD_PREFIX . 'channel') !== false) {
+            // Handle settings
                 update_option($key, $value);
-            }
         }
 
         $redirect_url .= '&success=settings_updated';

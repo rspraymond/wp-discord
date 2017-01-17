@@ -14,28 +14,16 @@ class AdminFormFieldBuilder
     public $placeholder = null;
 
     /**
-     * AdminFormFieldBuilder constructor.
-     * @param array $params ['name', 'type', 'value', 'attr']
+     * Build an input html element with email type.
+     * @param string $name
+     * @param string $value
+     * @param array $attr
+     *
+     * @since    0.3.0
      */
-    public function __construct($params = [])
+    public function email($name, $value = null, $attr = [])
     {
-        foreach ($params as $key => $value) {
-            $this->$key = $value;
-        }
-    }
-
-    public function render()
-    {
-        $field_function = $this->type . '_field_render';
-
-        $output = $this->$field_function();
-
-        echo $output;
-    }
-
-    public function email_field_render()
-    {
-        return $this->text_field_render('email');
+        self::text_field_render('email', $name, $value, $attr);
     }
 
     public function checkbox_field_render()
@@ -52,14 +40,22 @@ class AdminFormFieldBuilder
      */
     public static function label($name, $label)
     {
-        $output = '<label for="' . $name . '">' . $label . '</label>' . PHP_EOL;
+        $output = '<label class="' . WPD_PREFIX . $name . '" for="' . $name . '">' . $label . '</label>' . PHP_EOL;
 
         echo $output;
     }
 
-    public function number_field_render()
+    /**
+     * Build an input html element with number type.
+     * @param string $name
+     * @param string $value
+     * @param array $attr
+     *
+     * @since    0.3.0
+     */
+    public static function number($name, $value, $attr = [])
     {
-        return $this->text_field_render('number');
+        self::input('number', $name, $value, $attr);
     }
 
     public function radio_field_render()
@@ -102,30 +98,47 @@ class AdminFormFieldBuilder
         echo $output;
     }
 
-    public function text_field_render($type = 'text')
+    /**
+     * Builds out input field
+     * @param string $type
+     * @param string $name
+     * @param string $value
+     * @param array $attr
+     *
+     *
+     * @since    0.3.0
+     */
+    public static function input($type = 'text', $name, $value = null, $attr = [])
     {
-        $text_field = '<input type="' . $type . '" value="' . $this->value . '" name="' . $this->name . '"';
+        $input_field = '<input class="wpd_field ' . WPD_PREFIX . $name . '" type="' . $type . '" value="' . $value . '" name="' . $name . '"';
 
-        if (!empty($this->attr)) {
-            foreach ($this->attr as $key => $value) {
-                $text_field .= ' ' . $key . '="' . $value . '"';
+        if (!empty($attr)) {
+            foreach ($attr as $key => $attr_value) {
+                $input_field .= ' ' . $key . '="' . $attr_value . '"';
             }
         }
 
-        $text_field .= '>'; // End of tag
+        $input_field .= '>'; // End of tag
 
-        return $text_field;
+        echo $input_field;
     }
+
+    /**
+     * Build an input html element with text type.
+     * @param string $name
+     * @param string $value
+     * @param array $attr
+     *
+     * @since    0.3.0
+     */
+    public static function text($name, $value = null, $attr = [])
+    {
+        self::input('text', $name, $value, $attr);
+    }
+
 
     public function textarea_field_render()
     {
         //@TODO textarea_field_render
-    }
-
-    public static function render_field($params)
-    {
-        $field = new self($params);
-
-        $field->render();
     }
 }

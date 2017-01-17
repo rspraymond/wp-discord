@@ -7,16 +7,6 @@ if (!defined('WPINC')) {
 ?>
 
 <h2>Discord Channel Settings</h2>
-    <ul>
-    <?php
-        //tab menu
-        /*foreach ($post_types as $type) {
-            $slug = $type->name;
-            echo '<li><a href="#' . WPD_PREFIX . '' . $slug . '" role="tab" id="tab_wpd_' . $slug . '" aria-controls="' WPD_PREFIX . $slug . '">' . ucwords(str_replace(['-', '_'], ' ', $slug)) . '</a></li>';
-        }*/
-    ?>
-    </ul>
-
     <p class="description"></p>
     <?php
         foreach ($post_types as $type) {

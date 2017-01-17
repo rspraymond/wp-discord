@@ -71,9 +71,9 @@ class WP_Discord_Guild
     {
         $url = 'https://discordapp.com/api/guilds/' . $this->id . '/channels';
 
-        $response = DiscordApiWrapper::getRequest($url, 'kxvg0SMvqx7CL8FOmzuxkFOmO6nvx1', 'Bearer');
+        $response = DiscordApiWrapper::getRequest($url, $this->token);
 
-        if (strpos($response, '"code": 0') !== false) {
+        if (self::validate_response($response) == false) {
             return false;
         }
 
@@ -151,5 +151,20 @@ class WP_Discord_Guild
         $webhook = new WP_Discord_Webhook($webhook_id, $this);
 
         return $webhook;
+    }
+
+    /**
+     * Checks to make sure we got the response we want from discord.
+     * @param $response
+     *
+     * @since      0.3.0
+     */
+    public static function validate_response($response)
+    {
+        if (strpos($response, 'guild_id') === false) {
+            return false;
+        }
+
+        return true;
     }
 }
