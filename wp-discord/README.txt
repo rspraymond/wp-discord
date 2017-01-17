@@ -3,15 +3,15 @@ Contributors: rspraymond, psigel
 Tags: discord, chat, widget
 Requires at least: 4.0.0
 Tested up to: 4.7
-Stable tag: 0.2.3
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Wordpress plugin to integrate discord into your wordpress sites. Currently supports discord widget. Channel posting coming soon!
+Wordpress plugin to integrate discord into your wordpress sites. Currently supports discord widget, and basic channel posting.
 
 == Description ==
 
-Wordpress plugin to integrate discord into your wordpress sites. Currently supports discord widget. Channel posting coming soon!
+Wordpress plugin to integrate discord into your wordpress sites. Currently supports discord widget, and basic channel posting.
 
 == Installation ==
 
@@ -21,7 +21,7 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 4. Drag Widget into widget options
 5. Paste Widget ID found in your discord server at Server Settings -> Widget. Make sure "Enable Widget" is checked and that a instant invite channel is selected.
 6. (Optional) For best results. Create a never ending invite link by going to the Discord Server -> Invite People (Link above Server Settings). Not doing this could result in the Join Server link not working.
-
+7. CHANNEL POSTING (Beta) - Click "WP Discord" in admin menu and follow the instructions there.
 == Screenshots ==
 
 1.  Make sure "Enable Widget" is checked and that a instant invite channel is selected. Copy server id.
@@ -29,6 +29,9 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 3. Widget Display
 
 == Changelog ==
+
+= 0.3.0 =
+* Discord Channel Posting Beta Release
 
 = 0.2.3 =
 * Bug fixes for missing invite links. Adjust setup steps.
