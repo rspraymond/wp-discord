@@ -33,7 +33,7 @@ Your Server ID found in your discord server at Server Settings -> Widget.
 
 <p class="description">Make sure to copy the Token for your bot. DO NOT COPY AND PASTE CLIENT SECRET</p>
 
-<h3>4. Click Save Changes Below</h3>
+<h3>5. Click Save Changes Below</h3>
 
 <h3>6. Authorize your bot</h3>
 

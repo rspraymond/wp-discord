@@ -5,6 +5,16 @@ if (!defined('WPINC')) {
     die;
 }
 
+/**
+ * Plugin class to communicate with discord.
+ *
+ *
+ * @since      0.3.0
+ * @package    WP_Discord
+ * @subpackage WP_Discord/includes
+ * @author     Raymond Perez <ray@rayperez.com>
+ */
+
 class DiscordApiWrapper
 {
 

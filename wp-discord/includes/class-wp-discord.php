@@ -6,19 +6,6 @@ if (!defined('WPINC')) {
 }
 
 /**
- * The file that defines the core plugin class
- *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
- *
- * @link       http://wpdiscord.com
- * @since      0.1.0
- *
- * @package    WP_Discord
- * @subpackage WP_Discord/includes
- */
-
-/**
  * The core plugin class.
  *
  * This is used to define internationalization, admin-specific hooks, and
