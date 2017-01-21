@@ -21,11 +21,6 @@ if (!defined('WPINC')) {
     <div id="icon-themes" class="icon32"></div>
     <h1><?php echo $title; ?></h1>
 
-
-    <p class="notice notice-warning">
-        DISCLAIMER: <strong>Please note that the channel posting feature is currently a Beta release.</strong> Certain functionality may break. We appreciate your patience as we test out this feature. Use at your own risk. <br><a href="https://github.com/rspraymond/wp-discord/issues" target="_blank">Please report any bugs at the WP Discord official repo.</a>
-    </p>
-
     <?php
         // Notices
         if (isset($notices)) {
