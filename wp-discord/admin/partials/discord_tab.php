@@ -28,7 +28,7 @@ Your Server ID found in your discord server at Server Settings -> Widget.
 
 <p>
     <?php AdminFormFieldBuilder::label(WPD_PREFIX . 'auth_token', 'Bot Token:');  ?>
-    <?php AdminFormFieldBuilder::text(WPD_PREFIX . 'auth_token', $auth_token, ['size' => 75, 'placeholder' => 'Enter Bot Toekn']);  ?>
+    <?php AdminFormFieldBuilder::text(WPD_PREFIX . 'auth_token', $auth_token, ['size' => 75, 'placeholder' => 'Enter Bot Token']);  ?>
 </p>
 
 <p class="description">Make sure to copy the Token for your bot. DO NOT COPY AND PASTE CLIENT SECRET</p>
