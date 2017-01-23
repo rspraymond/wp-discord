@@ -1,5 +1,8 @@
 # Changelog
 
+### V0.3.0 - 2017-01-22
+* Discord Channel Posting Release
+
 ### V0.2.3 - 2016-11-07
 * Bug fixes for missing invite links. Adjust setup steps.
 

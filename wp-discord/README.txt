@@ -22,6 +22,7 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 5. Paste Widget ID found in your discord server at Server Settings -> Widget. Make sure "Enable Widget" is checked and that a instant invite channel is selected.
 6. (Optional) For best results. Create a never ending invite link by going to the Discord Server -> Invite People (Link above Server Settings). Not doing this could result in the Join Server link not working.
 7. CHANNEL POSTING- Click "WP Discord" in admin menu and follow the instructions there.
+
 == Screenshots ==
 
 1.  Make sure "Enable Widget" is checked and that a instant invite channel is selected. Copy server id.
@@ -32,7 +33,7 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 == Changelog ==
 
 = 0.3.0 =
-* Discord Channel Posting Beta Release
+* Discord Channel Posting Release
 
 = 0.2.3 =
 * Bug fixes for missing invite links. Adjust setup steps.
