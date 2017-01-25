@@ -130,3 +130,10 @@
 
 #wp-discord.wpd-dark .wpd-info ul.wpd-users li {
   border-color: #393d40; }
+
+.wpd_alert {
+  color: red;
+  background: #fafafa;
+  display: block;
+  padding: 1rem;
+  margin: 1rem; }

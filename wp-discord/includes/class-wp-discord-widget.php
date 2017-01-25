@@ -120,6 +120,10 @@ class WP_Discord_Follow_Widget extends WPH_Widget
 
     public static function render_widget($widget_object, $theme_class = 'wpd-white', $member_count = 3)
     {
+        if (self::validate_response($widget_object, __LINE__) == false) {
+            return false;
+        }
+
         $server_title = $widget_object->name;
         $users_online = self::filter_bots($widget_object->members);
         $invite_url = $widget_object->instant_invite;
@@ -202,5 +206,33 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         curl_close($ch);
 
         return json_decode($output);
+    }
+
+    /**
+     * Validate the response from discord.
+     * @param object $widget_response
+     *
+     * @since 0.3.1
+     * @return bool
+     */
+    public static function validate_response($widget_response, $line_number = null)
+    {
+        // If message is set. We assume it is an error.
+        if (!isset($widget_response->channels)) {
+            if (current_user_can('edit_theme_options')) {
+                $output = '<span class="' . WPD_PREFIX . 'alert">Error Response from Discord: ' . json_encode($widget_response);
+
+                if ($line_number > 0) {
+                    $output .= '<br>Line Number: ' . $line_number . ' in ' . __FILE__;
+                }
+
+                $output .= '</span>';
+
+                echo $output;
+            }
+            return false;
+        }
+
+        return true;
     }
 }

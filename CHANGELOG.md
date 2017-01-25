@@ -1,5 +1,8 @@
 # Changelog
 
+### V0.3.1 - 2017-01-25
+* Improve error reporting on widget render
+
 ### V0.3.0 - 2017-01-22
 * Discord Channel Posting Release
 
