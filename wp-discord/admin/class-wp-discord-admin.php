@@ -241,7 +241,7 @@ class WP_Discord_Admin
 
         foreach ($settings as $key => $value) {
             // Handle settings
-                update_option($key, $value);
+                update_option($key, trim($value));
         }
 
         $redirect_url .= '&success=settings_updated';
