@@ -41,11 +41,18 @@ class WP_Discord_Webhook
     public function post_content($content)
     {
         $url = 'https://discordapp.com/api/webhooks/' . $this->id . '/' . $this->token;
+        $bot = $this->guild->get_bot();
 
         if (!is_array($content)) {
             $content = [
-                'content' => $content
+                'content' => $content,
             ];
+        }
+
+        $content['username'] = $bot->name;
+
+        if (!empty($bot->icon)) {
+            $content['avatar_url'] = DiscordApiWrapper::getAvatarUrl($bot->id, $bot->icon);
         }
 
         $response = DiscordApiWrapper::postRequest($url, $this->guild->token, $content);

@@ -36,13 +36,30 @@ class WP_Discord_Guild
      * @since      0.3.0
      * @return array|mixed|object
      */
-    public function add_webhook($channel_id, $name)
+    public function add_webhook($channel_id, $name = null)
     {
+        $avatar_url = null;
+        $bot = $this->get_bot();
         $url = 'https://discordapp.com/api/channels/' . $channel_id . '/webhooks';
+
+        if (empty($name)) {
+            $name = $bot->name;
+        }
 
         $response = DiscordApiWrapper::postRequest($url, $this->token, ['name' => $name]);
 
         return json_decode($response);
+    }
+
+    /**
+     * Get bot info
+     *
+     * @return array|mixed|object
+     * @since 0.4.0
+     */
+    public function get_bot()
+    {
+        return json_decode(DiscordApiWrapper::getRequest('https://discordapp.com/api/oauth2/applications/@me', $this->token));
     }
 
     /**
@@ -111,7 +128,7 @@ class WP_Discord_Guild
         // Grab first webhook we get back; create a new one if we get back empty set
         if (empty($webhooks)) {
             $channel = $this->get_channel($channel_id);
-            $webhook_id = $this->add_webhook($channel_id, 'Wordpress')->id;
+            $webhook_id = $this->add_webhook($channel_id)->id;
         } else {
             $webhook_id = $webhooks[0]->id;
         }

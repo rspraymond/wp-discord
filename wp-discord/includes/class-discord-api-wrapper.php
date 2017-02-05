@@ -17,6 +17,18 @@ if (!defined('WPINC')) {
 
 class DiscordApiWrapper
 {
+    /**
+     * Builds proper discord avatar url string
+     * @param int $id
+     * @param string $hash
+     *
+     * @return string
+     * @since 0.4.0
+     */
+    public static function getAvatarUrl($id, $hash)
+    {
+        return 'https://cdn.discordapp.com/avatars/' . $id . '/' . $hash . '.jpg';
+    }
 
     /**
      * Handles get requests for Discord.
