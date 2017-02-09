@@ -12,38 +12,38 @@ class WP_Discord_Follow_Widget extends WPH_Widget
     public function __construct()
     {
         $args = [
-            'label' => __('Discord Widget', 'wp-discord-widget'),
-            'description' => __('Show who is online for your server.', 'wp-discord-widget'),
+            'label' => __('Discord Widget', 'wp-discord'),
+            'description' => __('Show who is online for your server.', 'wp-discord'),
             'fields' => [
                 // ID Field
                 [
-                    'name' => __('Server ID', 'wp-discord-widget'),
-                    'desc' => __('Go to Server Settings -> Widget to get your Server ID.', 'wp-discord-widget'),
+                    'name' => __('Server ID', 'wp-discord'),
+                    'desc' => __('Go to Server Settings -> Widget to get your Server ID.', 'wp-discord'),
                     'id' => 'wp-discord-server-id',
                     'type' => 'text',
                     'class' => 'widefat',
-                    'std' => __('Discord Server', 'wp-discord-widgets'),
+                    'std' => __('Discord Server', 'wp-discord'),
                     'validate' => 'numeric',
                     'filter' => 'strip_tags|esc_attr'
                 ],
                 // Theme Field
                 [
-                    'name' => __('Color Theme', 'wp-discord-widget'),
-                    'desc' => __('Select Color Theme', 'wp-discord-widget'),
+                    'name' => __('Color Theme', 'wp-discord'),
+                    'desc' => __('Select Color Theme', 'wp-discord'),
                     'id' => 'wp-discord-theme',
                     'type' => 'select',
                     'class' => 'widefat',
                     'fields' => [
                         [
-                            'name' => __('White', 'wp-discord-widget'),
+                            'name' => __('White', 'wp-discord'),
                             'value' => 'wpd-white'
                         ],
                         [
-                            'name' => __('Dark', 'wp-discord-widget'),
+                            'name' => __('Dark', 'wp-discord'),
                             'value' => 'wpd-dark'
                         ],
                         [
-                            'name' => __('Gray', 'wp-discord-widget'),
+                            'name' => __('Gray', 'wp-discord'),
                             'value' => 'wpd-gray'
                         ],
                     ],
@@ -51,34 +51,34 @@ class WP_Discord_Follow_Widget extends WPH_Widget
                 ],
                 // Member Count Field
                 [
-                    'name' => __('Member Count', 'wp-discord-widget'),
-                    'desc' => __('How Many Online Members would you like widget to display?', 'wp-discord-widget'),
+                    'name' => __('Member Count', 'wp-discord'),
+                    'desc' => __('How Many Online Members would you like widget to display?', 'wp-discord'),
                     'id' => 'wp-discord-member-count',
                     'type' => 'select',
                     'class' => 'widefat',
                     'fields' => [
                         [
-                            'name' => __('None', 'wp-discord-widget'),
+                            'name' => __('None', 'wp-discord'),
                             'value' => '0'
                         ],
                         [
-                            'name' => __('3', 'wp-discord-widget'),
+                            'name' => __('3', 'wp-discord'),
                             'value' => '3'
                         ],
                         [
-                            'name' => __('6', 'wp-discord-widget'),
+                            'name' => __('6', 'wp-discord'),
                             'value' => '6'
                         ],
                         [
-                            'name' => __('9', 'wp-discord-widget'),
+                            'name' => __('9', 'wp-discord'),
                             'value' => '9'
                         ],
                         [
-                            'name' => __('12', 'wp-discord-widget'),
+                            'name' => __('12', 'wp-discord'),
                             'value' => '12'
                         ],
                         [
-                            'name' => __('All', 'wp-discord-widget'),
+                            'name' => __('All', 'wp-discord'),
                             'value' => '-1'
                         ],
                     ],
@@ -136,10 +136,10 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         $output .= '<h3>' . $server_title . '</h3>' . PHP_EOL;
         $output .= '</div>' . PHP_EOL;
         $output .= '<div class="wpd-info">' . PHP_EOL;
-        $output .= '<span><strong>' . count($users_online) . '</strong> User(s) Online</span>' . PHP_EOL;
+        $output .= '<span><strong>' . count($users_online) . '</strong> ' . __('User(s) Online', 'wp-discord') . '</span>' . PHP_EOL;
 
         if (!empty($invite_url)) {
-            $output .= '<a href="' . $invite_url . '" target="_blank">Join Server</a>' . PHP_EOL;
+            $output .= '<a href="' . $invite_url . '" target="_blank">' . __('Join Server', 'wp-discord') . '</a>' . PHP_EOL;
         }
 
         if ($member_count != 0 && count($users_online) > 0) {
@@ -220,7 +220,7 @@ class WP_Discord_Follow_Widget extends WPH_Widget
         // If message is set. We assume it is an error.
         if (!isset($widget_response->channels)) {
             if (current_user_can('edit_theme_options')) {
-                $output = '<span class="' . WPD_PREFIX . 'alert">Error Response from Discord: ' . json_encode($widget_response);
+                $output = '<span class="' . WPD_PREFIX . 'alert">' . __('Error Response from Discord: ', 'wp-discord')  . json_encode($widget_response);
 
                 if ($line_number > 0) {
                     $output .= '<br>Line Number: ' . $line_number . ' in ' . __FILE__;
