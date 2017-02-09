@@ -1,5 +1,11 @@
 # Changelog
 
+### V0.3.3 - 2017-02-08
+* Bug fix. Replace root relative form path.
+
+### V0.3.2 - 2017-02-05
+* Make sure to trim saved plugin options
+
 ### V0.3.1 - 2017-01-25
 * Improve error reporting on widget render
 
