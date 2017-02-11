@@ -110,17 +110,17 @@ class AdminFormFieldBuilder
      */
     public static function input($type = 'text', $name, $value = null, $attr = [])
     {
-        $input_field = '<input class="wpd_field ' . WPD_PREFIX . $name . '" type="' . $type . '" value="' . $value . '" name="' . $name . '"';
+        $output = '<input class="wpd_field ' . WPD_PREFIX . $name . '" type="' . $type . '" value="' . $value . '" name="' . $name . '"';
 
         if (!empty($attr)) {
             foreach ($attr as $key => $attr_value) {
-                $input_field .= ' ' . $key . '="' . $attr_value . '"';
+                $output .= ' ' . $key . '="' . $attr_value . '"';
             }
         }
 
-        $input_field .= '>'; // End of tag
+        $output .= '>'; // End of tag
 
-        echo $input_field;
+        echo $output;
     }
 
     /**
