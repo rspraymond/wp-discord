@@ -1,5 +1,9 @@
 # Changelog
 
+### V0.4.0 - TBD
+* Use bot name and avatar when posting to channel.
+* Improve plugin localization.
+
 ### V0.3.3 - 2017-02-08
 * Bug fix. Replace root relative form path.
 

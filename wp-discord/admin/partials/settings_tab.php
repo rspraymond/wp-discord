@@ -20,7 +20,7 @@ if (!defined('WPINC')) {
                     ];
 
             if (empty($channels)) {
-                echo '<p>Channels not found. Please verify that your connection to Discord was setup properly.</p>';
+                echo '<p>' . __('Channels not found. Please verify that your connection to Discord was setup properly.', 'wp-discord') . '</p>';
                 continue;
             }
 
@@ -30,7 +30,7 @@ if (!defined('WPINC')) {
 
             $option_name = WPD_PREFIX . 'channel_' . $type->name;
 
-            AdminFormFieldBuilder::label($option_name, 'Select a channel for ' . $type->label);
+            AdminFormFieldBuilder::label($option_name, __('Select a channel for ', 'wp-discord') . $type->label);
             AdminFormFieldBuilder::select($option_name, $options, get_option($option_name, 0)); ?>
                 </div>
 
