@@ -30,6 +30,12 @@ if (!defined('WPINC')) {
     die;
 }
 
+$php_version = floatval(phpversion());
+
+if ($php_version < 5.4) {
+    trigger_error(__('You are using an unsupported version of PHP. PHP version 5.4 or greater required to use this plugin.', 'wp-discord'), E_USER_ERROR);
+}
+
 if (!defined('WPD_PREFIX')) {
     define('WPD_PREFIX', 'wpd_');
 }
