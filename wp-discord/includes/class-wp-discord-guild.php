@@ -167,7 +167,7 @@ class WP_Discord_Guild
 
         $response = json_decode($response);
 
-        if (!is_numeric($response->guild_id)) {
+        if (!is_array($response)) {
             return false;
         }
 
