@@ -165,6 +165,12 @@ class WP_Discord_Guild
             return false;
         }
 
+        $response = json_decode($response);
+
+        if (!is_numeric($response->guild_id)) {
+            return false;
+        }
+
         return true;
     }
 }
