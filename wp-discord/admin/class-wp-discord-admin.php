@@ -176,8 +176,9 @@ class WP_Discord_Admin
      */
     public function post_published_event($new_status, $old_status, $post)
     {
+
         // Only post to discord when a post switches from unpublished to published.
-        if ($old_status == 'publish'  ||  $new_status != 'publish') {
+        if ($old_status == 'publish' || $new_status != 'publish') {
             return true;
         }
 
@@ -198,7 +199,7 @@ class WP_Discord_Admin
             'embeds' => [
                 [
                     'title' => $post->post_title,
-                    'url' => get_permalink($post->id),
+                    'url' => get_permalink($post),
                     'type' => 'rich',
                     //'timestamp' => date(DATE_ATOM, strtotime($post->post_modified_gmt)),
                     'description' => $description,
@@ -213,7 +214,6 @@ class WP_Discord_Admin
 
         $webhook->post_content($content);
     }
-
 
     public function register_shortcodes()
     {
@@ -241,7 +241,7 @@ class WP_Discord_Admin
 
         foreach ($settings as $key => $value) {
             // Handle settings
-                update_option($key, trim($value));
+            update_option($key, trim($value));
         }
 
         $redirect_url .= '&success=settings_updated';

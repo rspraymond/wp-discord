@@ -16,7 +16,7 @@
  * Plugin Name:       WP Discord
  * Plugin URI:        https://wordpress.org/plugins/wp-discord/
  * Description:       Wordpress plugin to integrate discord into your wordpress sites. Currently supports discord widget, and basic channel posting.
- * Version:           0.3.4
+ * Version:           0.3.5
  * Author:            Raymond Perez
  * Author URI:        http://rayperez.com
  * License:           GPL-2.0+
