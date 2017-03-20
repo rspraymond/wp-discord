@@ -36,6 +36,9 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 * Use bot name and avatar when posting to channel.
 * Improve plugin localization
 
+= 0.3.5 =
+* Fix channel posting for future posts.
+
 = 0.3.4 =
 * Display a more graceful error message when activating the plugin on unsupported versions of PHP.
 
