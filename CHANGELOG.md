@@ -1,6 +1,9 @@
 # Changelog
 
-### v0.3.4 - 2017-02-11
+### V0.3.5 - 2017-03-19
+* Fix channel posting for future posts.
+
+### V0.3.4 - 2017-02-11
 * Display a more graceful error message when activating the plugin on unsupported versions of PHP.
 
 ### V0.3.3 - 2017-02-08
