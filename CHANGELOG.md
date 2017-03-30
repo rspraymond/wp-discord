@@ -1,5 +1,8 @@
 # Changelog
 
+### V0.3.6 - 2017-03-20
+* Delete Plugin options when uninstalling plugin.
+
 ### V0.3.5 - 2017-03-19
 * Fix channel posting for future posts.
 

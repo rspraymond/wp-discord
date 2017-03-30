@@ -29,3 +29,16 @@
 if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit;
 }
+
+$options = [
+    'auth_token',
+    'client_id',
+    'guild_id',
+];
+
+foreach ($options as $option) {
+    delete_option('wpd_' . $option);
+
+    // for site options in Multisite
+    delete_site_option('wpd_' . $option);
+}
