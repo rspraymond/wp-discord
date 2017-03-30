@@ -62,7 +62,7 @@ class WP_Discord
     public function __construct()
     {
         $this->plugin_name = 'wp-discord';
-        $this->version = '0.3.5';
+        $this->version = '0.3.6';
 
         $this->load_dependencies();
         $this->set_locale();
