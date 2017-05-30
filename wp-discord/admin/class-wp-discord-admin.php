@@ -326,8 +326,6 @@ class WP_Discord_Admin
             return false;
         }
 
-
-
         return true;
     }
 }
