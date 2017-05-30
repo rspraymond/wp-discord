@@ -1,5 +1,8 @@
 # Changelog
 
+### V0.3.7 - 2017-05-30
+* Validate Snowflake ID fields.
+
 ### V0.3.6 - 2017-03-20
 * Delete Plugin options when uninstalling plugin.
 

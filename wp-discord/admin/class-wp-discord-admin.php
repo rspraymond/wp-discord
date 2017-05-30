@@ -296,7 +296,7 @@ class WP_Discord_Admin
      * Validate settings
      * @param array $options
      *
-     * @since @TODO
+     * @since 0.3.7
      */
     public function validate_settings(array $options)
     {
@@ -319,6 +319,8 @@ class WP_Discord_Admin
     /**
      * Validate snowflake.
      * @param int $value
+     *
+     * @since 0.3.7
      */
     public function validate_snowflake($value)
     {
