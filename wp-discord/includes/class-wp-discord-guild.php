@@ -182,6 +182,12 @@ class WP_Discord_Guild
             return false;
         }
 
+        $response = json_decode($response);
+
+        if (!is_array($response)) {
+            return false;
+        }
+
         return true;
     }
 }

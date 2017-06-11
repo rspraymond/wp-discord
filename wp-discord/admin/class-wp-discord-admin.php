@@ -50,6 +50,7 @@ class WP_Discord_Admin
 
     public $tabs = ['discord', 'settings'];
     public $guild = null;
+    public $errors = [];
 
     /**
      * Initialize the class and set its properties.
@@ -94,6 +95,17 @@ class WP_Discord_Admin
                 'class' => 'notice-success',
                 'message' => ucfirst(str_replace('_', ' ', $_GET['success']))
             ];
+        }
+
+        if (isset($_GET['errors'])) {
+            $errors = explode('&', $_GET['errors']);
+
+            foreach ($errors as $error) {
+                $notices[] = [
+                    'class' => 'notice-error',
+                    'message' => ucfirst(str_replace('_', ' ', $error))
+                ];
+            }
         }
 
         $title = 'WP Discord Options';
@@ -237,7 +249,25 @@ class WP_Discord_Admin
         check_admin_referer(WPD_PREFIX . 'save_settings');
 
         $settings = $_POST;
-        $redirect_url = $settings['_wp_http_referer'];
+        $url = parse_url($settings['_wp_http_referer']);
+        $redirect_url = $url['path'];
+        $query = [];
+        parse_str($url['query'], $query);
+
+        $redirect_url .= '?page=' . $query['page'];
+
+        $this->validate_settings($settings);
+
+        if (!empty($this->errors)) {
+            $redirect_url .= '&errors=';
+
+            foreach ($this->errors as $error) {
+                $redirect_url .= urlencode($error) . '&';
+            }
+
+            wp_redirect(rtrim($redirect_url, '&'));
+            exit;
+        }
 
         foreach ($settings as $key => $value) {
             // Handle settings
@@ -260,5 +290,44 @@ class WP_Discord_Admin
         $server_id = get_option(WPD_PREFIX . 'guild_id');
         $auth_token = get_option(WPD_PREFIX . 'auth_token');
         $this->guild = new WP_Discord_Guild($server_id, $auth_token);
+    }
+
+    /**
+     * Validate settings
+     * @param array $options
+     *
+     * @since 0.3.7
+     */
+    public function validate_settings(array $options)
+    {
+        $validation = [
+            'snowflake' => ['wpd_guild_id' => 'Server ID', 'wpd_client_id' => 'Client ID'],
+            'string' => ['wpd_auth_token' => 'Bot Token']
+        ];
+
+        foreach ($options as $key => $value) {
+            if (in_array($key, array_keys($validation['snowflake'])) && !$this->validate_snowflake($value)) {
+                $this->errors[] = 'Invalid Setting: ' . $validation['snowflake'][$key];
+            }
+
+            if (in_array($key, array_keys($validation['string'])) && !is_string($value)) {
+                $this->errors[] = 'Invalid Setting: ' . $validation['string'][$key];
+            }
+        }
+    }
+
+    /**
+     * Validate snowflake.
+     * @param int $value
+     *
+     * @since 0.3.7
+     */
+    public function validate_snowflake($value)
+    {
+        if ((is_numeric($value)) == false || $value >= 9223372036854775807) {
+            return false;
+        }
+
+        return true;
     }
 }

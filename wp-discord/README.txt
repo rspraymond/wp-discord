@@ -37,6 +37,10 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 * Use bot name and avatar when posting to channel.
 * Improve plugin localization
 
+= 0.3.7 =
+* Validate Snowflake ID fields.
+
+
 = 0.3.6 =
 * Delete Plugin options when uninstalling plugin.
 
