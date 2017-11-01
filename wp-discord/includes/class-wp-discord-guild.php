@@ -79,7 +79,7 @@ class WP_Discord_Guild
 
         $channels = json_decode($response);
 
-        if (!empty($type)) {
+        if (!is_null($type)) {
             foreach ($channels as $key => $channel) {
                 if ($channel->type !== $type) {
                     unset($channels[$key]);
