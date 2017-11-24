@@ -52,7 +52,6 @@ class WP_Doin_Shortcodes_Generator
 			</ul>
 		<?php endif; ?>
 		<?php
-
     }
 
     /**
@@ -132,6 +131,5 @@ class WP_Doin_Shortcodes_Generator
 		<?php endforeach; ?>
 
 		<?php
-
     }
 }

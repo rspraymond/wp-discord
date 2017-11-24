@@ -35,6 +35,5 @@ if (!defined('WPINC')) {
                 </div>
 
             <?php
-
         }
     ?>

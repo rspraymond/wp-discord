@@ -97,7 +97,6 @@ class WP_Doin_Shortcode
 			</div>
 		</div>
 		<?php
-
     }
 
     public function generate_textarea($key, $heading, $description)
@@ -115,7 +114,6 @@ class WP_Doin_Shortcode
 			</div>
 		</div>
 		<?php
-
     }
 
     public function generate_select($key, $heading, $description, $values)
@@ -137,7 +135,6 @@ class WP_Doin_Shortcode
 			</div>
 		</div>
 		<?php
-
     }
 
     public function generate_checkbox($key, $heading, $description, $values)
@@ -161,6 +158,5 @@ class WP_Doin_Shortcode
 			</div>
 		</div>
 		<?php
-
     }
 }

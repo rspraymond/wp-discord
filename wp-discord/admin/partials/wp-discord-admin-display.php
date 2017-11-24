@@ -30,7 +30,6 @@ if (!defined('WPINC')) {
                     <p><?php echo $notice['message']; ?></p>
                 </div>
                 <?php
-
             }
         }
     ?>
@@ -43,7 +42,6 @@ if (!defined('WPINC')) {
             ?>
                 <a href="?page=wp-discord&tab=<?php echo $tab->name; ?>" class="nav-tab <?php echo $active_tab == $tab->name ? 'nav-tab-active' : ''; ?>"><?php echo $tab->get_display_name() ?></a>
             <?php
-
         }
 
         ?>
