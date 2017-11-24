@@ -36,6 +36,7 @@ Wordpress plugin to integrate discord into your wordpress sites. Currently suppo
 = 0.4.0 =
 * Use bot name and avatar when posting to channel.
 * Improve plugin localization
+* Fix issue with guild channels not being retrieved
 
 = 0.3.7 =
 * Validate Snowflake ID fields.

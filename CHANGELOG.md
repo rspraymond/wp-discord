@@ -1,8 +1,9 @@
 # Changelog
 
-### V0.4.0 - TBD
+### V0.4.0 - 2017-11-24
 * Use bot name and avatar when posting to channel.
 * Improve plugin localization.
+* Fix issue with guild channels not being retrieved
 
 ### V0.3.7 - 2017-05-30
 * Validate Snowflake ID fields.
