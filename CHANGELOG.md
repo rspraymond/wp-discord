@@ -1,5 +1,8 @@
 # Changelog
 
+### V0.4.1 - 2017-11-29
+* Add check for proper configuration.
+
 ### V0.4.0 - 2017-11-24
 * Use bot name and avatar when posting to channel.
 * Improve plugin localization.

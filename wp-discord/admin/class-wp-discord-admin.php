@@ -116,6 +116,26 @@ class WP_Discord_Admin
     }
 
     /**
+     * Check that guild is configured.
+     *
+     * @since    0.4.1
+     */
+    public function config_check()
+    {
+        if (current_user_can('manage_options') && $this->guild->get_channels() == false) {
+            ?>
+            <div class="notice notice-warning">
+                <p><?php
+                    _e('WP Discord is not configured Properly.', 'wp-discord');
+            echo ' <a href="' . menu_page_url('wp-discord', false) . '">';
+            _e('Configure', 'wp-discord');
+            echo '</a>'; ?></p>
+            </div>
+            <?php
+        }
+    }
+
+    /**
      * Register the stylesheets for the admin area.
      *
      * @since    0.1.0

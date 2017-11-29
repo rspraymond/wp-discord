@@ -62,7 +62,7 @@ class WP_Discord
     public function __construct()
     {
         $this->plugin_name = 'wp-discord';
-        $this->version = '0.4.0';
+        $this->version = '0.4.1';
 
         $this->load_dependencies();
         $this->set_locale();
@@ -152,6 +152,7 @@ class WP_Discord
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
         $this->loader->add_action('admin_menu', $plugin_admin, 'admin_menu');
+        $this->loader->add_action('admin_notices', $plugin_admin, 'config_check');
         $this->loader->add_action('widgets_init', $plugin_admin, 'register_widgets');
         $this->loader->add_action('init', $plugin_admin, 'register_shortcodes');
         $this->loader->add_action('admin_post_' . WPD_PREFIX . 'save_settings', $plugin_admin, 'save_settings');

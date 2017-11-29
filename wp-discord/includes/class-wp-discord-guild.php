@@ -125,6 +125,10 @@ class WP_Discord_Guild
 
         $webhooks = $this->get_webhooks($channel_id);
 
+        if (!is_array($webhooks)) {
+            return false;
+        }
+
         // Grab first webhook we get back; create a new one if we get back empty set
         if (empty($webhooks)) {
             $channel = $this->get_channel($channel_id);
