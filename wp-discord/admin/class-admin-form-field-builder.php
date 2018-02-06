@@ -10,7 +10,7 @@ class AdminFormFieldBuilder
     public $name;
     public $type = 'text';
     public $value = null;
-    public $attr = [];
+    public $attr = array();
     public $placeholder = null;
 
     /**
@@ -21,7 +21,7 @@ class AdminFormFieldBuilder
      *
      * @since    0.3.0
      */
-    public function email($name, $value = null, $attr = [])
+    public function email($name, $value = null, $attr = array())
     {
         self::text_field_render('email', $name, $value, $attr);
     }
@@ -53,7 +53,7 @@ class AdminFormFieldBuilder
      *
      * @since    0.3.0
      */
-    public static function number($name, $value, $attr = [])
+    public static function number($name, $value, $attr = array())
     {
         self::input('number', $name, $value, $attr);
     }
@@ -72,7 +72,7 @@ class AdminFormFieldBuilder
      *
      * @since    0.3.0
      */
-    public static function select($name, array $options, $selected = null, $attr = [])
+    public static function select($name, array $options, $selected = null, $attr = array())
     {
         $output = '<select name="' . $name;
 
@@ -108,7 +108,7 @@ class AdminFormFieldBuilder
      *
      * @since    0.3.0
      */
-    public static function input($type = 'text', $name, $value = null, $attr = [])
+    public static function input($type = 'text', $name, $value = null, $attr = array())
     {
         $output = '<input class="wpd_field ' . WPD_PREFIX . $name . '" type="' . $type . '" value="' . $value . '" name="' . $name . '"';
 
@@ -131,7 +131,7 @@ class AdminFormFieldBuilder
      *
      * @since    0.3.0
      */
-    public static function text($name, $value = null, $attr = [])
+    public static function text($name, $value = null, $attr = array())
     {
         self::input('text', $name, $value, $attr);
     }

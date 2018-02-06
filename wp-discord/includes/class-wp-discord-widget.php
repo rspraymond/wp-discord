@@ -11,12 +11,12 @@ class WP_Discord_Follow_Widget extends WPH_Widget
 {
     public function __construct()
     {
-        $args = [
+        $args = array(
             'label' => __('Discord Widget', 'wp-discord'),
             'description' => __('Show who is online for your server.', 'wp-discord'),
-            'fields' => [
+            'fields' => array(
                 // ID Field
-                [
+                array(
                     'name' => __('Server ID', 'wp-discord'),
                     'desc' => __('Go to Server Settings -> Widget to get your Server ID.', 'wp-discord'),
                     'id' => 'wp-discord-server-id',
@@ -25,74 +25,74 @@ class WP_Discord_Follow_Widget extends WPH_Widget
                     'std' => __('Discord Server', 'wp-discord'),
                     'validate' => 'numeric',
                     'filter' => 'strip_tags|esc_attr'
-                ],
+                ),
                 // Theme Field
-                [
+                array(
                     'name' => __('Color Theme', 'wp-discord'),
                     'desc' => __('Select Color Theme', 'wp-discord'),
                     'id' => 'wp-discord-theme',
                     'type' => 'select',
                     'class' => 'widefat',
-                    'fields' => [
-                        [
+                    'fields' => array(
+                        array(
                             'name' => __('White', 'wp-discord'),
                             'value' => 'wpd-white'
-                        ],
-                        [
+                        ),
+                        array(
                             'name' => __('Dark', 'wp-discord'),
                             'value' => 'wpd-dark'
-                        ],
-                        [
+                        ),
+                        array(
                             'name' => __('Gray', 'wp-discord'),
                             'value' => 'wpd-gray'
-                        ],
-                    ],
+                        ),
+                    ),
                     'filter' => 'strip_tags|esc_attr'
-                ],
+                ),
                 // Member Count Field
-                [
+                array(
                     'name' => __('Member Count', 'wp-discord'),
                     'desc' => __('How Many Online Members would you like widget to display?', 'wp-discord'),
                     'id' => 'wp-discord-member-count',
                     'type' => 'select',
                     'class' => 'widefat',
-                    'fields' => [
-                        [
+                    'fields' => array(
+                        array(
                             'name' => __('None', 'wp-discord'),
                             'value' => '0'
-                        ],
-                        [
+                        ),
+                        array(
                             'name' => __('3', 'wp-discord'),
                             'value' => '3'
-                        ],
-                        [
+                        ),
+                        array(
                             'name' => __('6', 'wp-discord'),
                             'value' => '6'
-                        ],
-                        [
+                        ),
+                        array(
                             'name' => __('9', 'wp-discord'),
                             'value' => '9'
-                        ],
-                        [
+                        ),
+                        array(
                             'name' => __('12', 'wp-discord'),
                             'value' => '12'
-                        ],
-                        [
+                        ),
+                        array(
                             'name' => __('All', 'wp-discord'),
                             'value' => '-1'
-                        ],
-                    ],
+                        ),
+                    ),
                     'filter' => 'strip_tags|esc_attr'
-                ]
-            ]
-        ];
+                )
+            )
+        );
 
         $this->create_widget($args);
     }
 
     public static function filter_bots($members)
     {
-        $real_users = [];
+        $real_users = array();
 
         foreach ($members as $member) {
             //Not Bots!
@@ -106,7 +106,7 @@ class WP_Discord_Follow_Widget extends WPH_Widget
 
     public static function member_shuffle($members)
     {
-        $shuffled_members = [];
+        $shuffled_members = array();
 
         $keys = array_keys($members);
         shuffle($keys);

@@ -31,7 +31,7 @@ class WP_Doin_Shortcode
      * @param array $values
      * @return \WP_Doin_Shortcode
      */
-    public function add_field($type, $name, $heading = '', $description = '', $values = [ ])
+    public function add_field($type, $name, $heading = '', $description = '', $values = array())
     {
         $this->fields[$name] = array( 'type' => $type, 'heading' => $heading, 'description' => $description, 'values' => $values );
         return $this;

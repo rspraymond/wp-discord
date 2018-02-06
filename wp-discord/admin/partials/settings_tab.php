@@ -12,12 +12,12 @@ if (!defined('WPINC')) {
         foreach ($post_types as $type) {
             $slug = $type->name; ?>
                 <div id="<?php echo WPD_PREFIX . $slug; ?>">
-                    <h3><?php echo ucwords(str_replace(['-', '_'], ' ', $slug)); ?></h3>
+                    <h3><?php echo ucwords(str_replace(array('-', '_'), ' ', $slug)); ?></h3>
 
             <?php
-                    $options = [
+                    $options = array(
                         0 => 'none'
-                    ];
+                    );
 
             if (empty($channels)) {
                 echo '<p>' . __('Channels not found. Please verify that your connection to Discord was setup properly.', 'wp-discord') . '</p>';

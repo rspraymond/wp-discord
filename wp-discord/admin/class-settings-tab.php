@@ -11,10 +11,10 @@ class SettingsTab
 {
     public $partial;
     public $name;
-    public $fields = [];
-    public $params = [];
+    public $fields = array();
+    public $params = array();
 
-    public function __construct($name, $attr = [], $partial = null)
+    public function __construct($name, $attr = array(), $partial = null)
     {
         $this->name = $name;
 
@@ -44,7 +44,7 @@ class SettingsTab
 
     public function get_display_name()
     {
-        return ucwords(str_replace(['_', '-'], ' ', $this->name));
+        return ucwords(str_replace(array('_', '-'), ' ', $this->name));
     }
 
     public function get_partial_path()

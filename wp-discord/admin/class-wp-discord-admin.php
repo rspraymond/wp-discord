@@ -48,9 +48,9 @@ class WP_Discord_Admin
      */
     private $version;
 
-    public $tabs = ['discord', 'settings'];
+    public $tabs = array('discord', 'settings');
     public $guild = null;
-    public $errors = [];
+    public $errors = array();
 
     /**
      * Initialize the class and set its properties.
@@ -82,7 +82,7 @@ class WP_Discord_Admin
      */
     public function admin_options()
     {
-        $notices = [];
+        $notices = array();
 
         if (isset($_GET['tab'])) {
             $active_tab = $_GET['tab'];
@@ -91,20 +91,20 @@ class WP_Discord_Admin
         }
 
         if (isset($_GET['success'])) {
-            $notices[] = [
+            $notices[] = array(
                 'class' => 'notice-success',
                 'message' => ucfirst(str_replace('_', ' ', $_GET['success']))
-            ];
+            );
         }
 
         if (isset($_GET['errors'])) {
             $errors = explode('&', $_GET['errors']);
 
             foreach ($errors as $error) {
-                $notices[] = [
+                $notices[] = array(
                     'class' => 'notice-error',
                     'message' => ucfirst(str_replace('_', ' ', $error))
-                ];
+                );
             }
         }
 
@@ -163,13 +163,13 @@ class WP_Discord_Admin
      */
     public function get_tabs()
     {
-        $tabs = [];
+        $tabs = array();
         $args = array(
             'public' => true,
         );
 
         $post_types = get_post_types($args, 'objects');
-        $banned_types = ['attachment', 'nav_menu_item', 'revision'];
+        $banned_types = array('attachment', 'nav_menu_item', 'revision');
 
         //cleanup
         foreach ($post_types as $key => $type) {
@@ -179,7 +179,7 @@ class WP_Discord_Admin
         }
 
         foreach ($this->tabs as $tab_name) {
-            $settings_tab = new SettingsTab($tab_name, ['post_types' => $post_types]);
+            $settings_tab = new SettingsTab($tab_name, array('post_types' => $post_types));
             switch ($tab_name) {
                 case 'discord':
                     $settings_tab->guild_id = get_option(WPD_PREFIX . 'guild_id');
@@ -227,9 +227,9 @@ class WP_Discord_Admin
             $description = $post->post_excerpt;
         }
 
-        $content = [
-            'embeds' => [
-                [
+        $content = array(
+            'embeds' => array(
+                array(
                     'title' => $post->post_title,
                     'url' => get_permalink($post),
                     'type' => 'rich',
@@ -240,9 +240,9 @@ class WP_Discord_Admin
                         'url' => '',
                         'icon_url' => ''
                     ]*/
-                ]
-            ]
-        ];
+                )
+            )
+        );
 
         $webhook->post_content($content);
     }
@@ -271,7 +271,7 @@ class WP_Discord_Admin
         $settings = $_POST;
         $url = parse_url($settings['_wp_http_referer']);
         $redirect_url = $url['path'];
-        $query = [];
+        $query = array();
         parse_str($url['query'], $query);
 
         $redirect_url .= '?page=' . $query['page'];
@@ -320,10 +320,10 @@ class WP_Discord_Admin
      */
     public function validate_settings(array $options)
     {
-        $validation = [
-            'snowflake' => ['wpd_guild_id' => 'Server ID', 'wpd_client_id' => 'Client ID'],
-            'string' => ['wpd_auth_token' => 'Bot Token']
-        ];
+        $validation = array(
+            'snowflake' => array('wpd_guild_id' => 'Server ID', 'wpd_client_id' => 'Client ID'),
+            'string' => array('wpd_auth_token' => 'Bot Token')
+        );
 
         foreach ($options as $key => $value) {
             if (in_array($key, array_keys($validation['snowflake'])) && !$this->validate_snowflake($value)) {

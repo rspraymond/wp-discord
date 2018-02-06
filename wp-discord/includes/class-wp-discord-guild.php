@@ -46,7 +46,7 @@ class WP_Discord_Guild
             $name = $bot->name;
         }
 
-        $response = DiscordApiWrapper::postRequest($url, $this->token, ['name' => $name]);
+        $response = DiscordApiWrapper::postRequest($url, $this->token, array('name' => $name));
 
         return json_decode($response);
     }

@@ -4,7 +4,7 @@
 <?php _e('Your Server ID found in your discord server at Server Settings -> Widget.', 'wp-discord'); ?>
 <p>
     <?php AdminFormFieldBuilder::label(WPD_PREFIX . 'guild_id', __('Server ID:', 'wp-discord')); ?>&nbsp;
-    <?php AdminFormFieldBuilder::text(WPD_PREFIX . 'guild_id', $guild_id, ['size' => 75, 'placeholder' => __('Enter Server ID', 'wp-discord')]); ?>
+    <?php AdminFormFieldBuilder::text(WPD_PREFIX . 'guild_id', $guild_id, array('size' => 75, 'placeholder' => __('Enter Server ID', 'wp-discord'))); ?>
 </p>
 
 <h3><?php _e('2. Register your Discord App.', 'wp-discord'); ?> <a href="https://discordapp.com/developers/applications/me" target="_blank"><?php _e('Click Here', 'wp-discord'); ?></a></h3>
@@ -23,12 +23,12 @@
 <h3><?php _e('4. Copy and Paste Client ID and Bot Token:', 'wp-discord'); ?></h3>
 <p>
     <?php AdminFormFieldBuilder::label(WPD_PREFIX . 'client_id', 'Client ID:'); ?>&nbsp;&nbsp;
-    <?php AdminFormFieldBuilder::text(WPD_PREFIX . 'client_id', $client_id, ['size' => 75, 'placeholder' => __('Enter Client ID', 'wp-discord')]); ?>
+    <?php AdminFormFieldBuilder::text(WPD_PREFIX . 'client_id', $client_id, array('size' => 75, 'placeholder' => __('Enter Client ID', 'wp-discord'))); ?>
 </p>
 
 <p>
     <?php AdminFormFieldBuilder::label(WPD_PREFIX . 'auth_token', 'Bot Token:'); ?>
-    <?php AdminFormFieldBuilder::text(WPD_PREFIX . 'auth_token', $auth_token, ['size' => 75, 'placeholder' => __('Enter Bot Token', 'wp-discord')]); ?>
+    <?php AdminFormFieldBuilder::text(WPD_PREFIX . 'auth_token', $auth_token, array('size' => 75, 'placeholder' => __('Enter Bot Token', 'wp-discord'))); ?>
 </p>
 
 <p class="description"><?php _e('Make sure to copy the Token for your bot. DO NOT COPY AND PASTE CLIENT SECRET', 'wp-discord'); ?></p>

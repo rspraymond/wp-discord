@@ -44,9 +44,9 @@ class WP_Discord_Webhook
         $bot = $this->guild->get_bot();
 
         if (!is_array($content)) {
-            $content = [
+            $content = array(
                 'content' => $content,
-            ];
+            );
         }
 
         $content['username'] = $bot->name;
