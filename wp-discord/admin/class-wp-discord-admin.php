@@ -210,7 +210,9 @@ class WP_Discord_Admin
     {
 
         // Only post to discord when a post switches from unpublished to published.
-        if ($old_status == 'publish' || $new_status != 'publish') {
+		$alreadyposted = get_post_meta($post->ID, 'wpdiscord_posted', true);
+
+        if ($old_status == 'publish' || $new_status != 'publish' || $alreadyposted ) {
             return true;
         }
 
@@ -245,6 +247,7 @@ class WP_Discord_Admin
         );
 
         $webhook->post_content($content);
+		update_post_meta($post->ID, 'wpdiscord_posted', 'true');		
     }
 
     public function register_shortcodes()
