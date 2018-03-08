@@ -1,5 +1,8 @@
 # Changelog
 
+### V0.4.3 - 2018-03-08
+* Add feature to only publish once. (Contributed by https://github.com/CharlyLeetham)
+
 ### V0.4.2 - 2018-02-06
 * Add Support for older PHP versions.
 
